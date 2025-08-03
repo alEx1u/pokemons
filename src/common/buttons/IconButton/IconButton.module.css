@@ -1,0 +1,109 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem; /* rounded-2xl */
+  background-color: inherit;
+  padding: 0.25rem; /* p-1 */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* shadow-sm */
+}
+
+.button[disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.button_loading {
+  pointer-events: none;
+}
+
+/* Contained button style */
+.contained,
+.contained[type='button'],
+.contained[type='reset'],
+.contained[type='submit'] {
+  background-color: #3b82f6; /* bg-blue-500 */
+  fill: white;
+}
+
+.contained:hover,
+.contained[type='button']:hover,
+.contained[type='reset']:hover,
+.contained[type='submit']:hover {
+  background-color: #60a5fa; /* hover:bg-blue-400 */
+}
+
+/* Outlined button style */
+.outlined,
+.outlined[type='button'],
+.outlined[type='reset'],
+.outlined[type='submit'] {
+  border: 1px solid #3b82f6; /* border-blue-500 */
+  background-color: inherit;
+  fill: #3b82f6;
+}
+
+.outlined:hover,
+.outlined[type='button']:hover,
+.outlined[type='reset']:hover,
+.outlined[type='submit']:hover {
+  border-color: #60a5fa; /* hover:border-blue-400 */
+  fill: #60a5fa;         /* hover:fill-blue-400 */
+}
+
+.outlined:active,
+.outlined[type='button']:active,
+.outlined[type='reset']:active,
+.outlined[type='submit']:active {
+  border-color: #3b82f6; /* active:border-blue-500 */
+  fill: #3b82f6;         /* active:fill-blue-500 */
+}
+
+/* Icon button */
+.icon,
+.icon[type='button'],
+.icon[type='reset'],
+.icon[type='submit'] {
+  background-color: inherit;
+  fill: #737373; /* fill-neutral-500 */
+  stroke: #737373; /* stroke-neutral-500 */
+  box-shadow: none;
+}
+
+.icon:hover,
+.icon[type='button']:hover,
+.icon[type='reset']:hover,
+.icon[type='submit']:hover {
+  fill: #a3a3a3; /* hover:fill-neutral-400 */
+}
+
+.icon:active,
+.icon[type='button']:active,
+.icon[type='reset']:active,
+.icon[type='submit']:active {
+  fill: #737373; /* active:fill-neutral-500 */
+}
+
+/* Dark theme icon override */
+:global(.dark) .icon,
+:global(.dark) .icon[type='button'],
+:global(.dark) .icon[type='reset'],
+:global(.dark) .icon[type='submit'] {
+  background-color: inherit;
+  fill: #cbd5e1; /* fill-slate-300 */
+  stroke: #cbd5e1; /* stroke-slate-300 */
+  box-shadow: none;
+}
+
+:global(.dark) .icon:hover {
+  fill: #e2e8f0; /* hover:fill-slate-200 */
+}
+
+:global(.dark) .icon:active {
+  fill: #e2e8f0; /* active:fill-slate-200 */
+}
+
+.button svg {
+  width: 2.75rem; /* w-11 */
+  height: 2.75rem; /* h-11 */
+}

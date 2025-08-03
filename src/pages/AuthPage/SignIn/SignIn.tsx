@@ -1,0 +1,101 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+import { ROUTES } from "../../../utils/constants/routes";
+import { useRequestloginWithEmailAndPassword } from "../../../utils/firebase/hooks/useRequestloginWithEmailAndPassword";
+import { useNavigate } from "react-router";
+import { FirebaseError } from "firebase/app";
+import Button from "../../../common/buttons/Button/Button";
+import { Input } from "../../../common/input/Input";
+import { useAppDispatch } from '../../../utils/contexts/store/store';
+import { sessionSlice } from '../../../utils/contexts/store/session.slice';
+
+interface SignInProps {
+  inputStyles: string;
+  errorStyles: string;
+}
+
+const loginSchema = z.object({
+  email: z.string().email("Invalid email"),
+  password: z.string().min(6, "Minimum value is 6"),
+});
+
+type FormType = z.infer<typeof loginSchema>;
+
+export const SignIn = ({ inputStyles, errorStyles }: SignInProps) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [fireBaseError, setFireBaseError] = useState<string | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<FormType>({
+    resolver: zodResolver(loginSchema),
+    mode: "onBlur",
+  });
+
+  const { mutate: loginWithEmailAndPasswordMutation, isPending: isLogging } =
+    useRequestloginWithEmailAndPassword({
+      onSuccess: () => {
+        dispatch(sessionSlice.actions.logginIn());
+        navigate(ROUTES.POKEMONS);
+      },
+      onError: (error) => {
+        if (error instanceof FirebaseError) {
+          switch (error.code) {
+            case "auth/user-not-found":
+              setError("email", { message: "User not found" });
+              break;
+            case "auth/wrong-password":
+              setError("password", { message: "Wrong password" });
+              break;
+            case "auth/invalid-email":
+              setError("email", { message: "Invalid email" });
+              break;
+            default:
+              setFireBaseError("Unexpected error. Try again.");
+          }
+        }
+      },
+    });
+
+  const onSubmit: SubmitHandler<FormType> = (data) => {
+    const { email, password } = data as z.infer<typeof loginSchema>;
+    loginWithEmailAndPasswordMutation({ email, password });
+  };
+
+  const loading = isLogging || isSubmitting;
+
+  return (
+    <>
+      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          className={inputStyles}
+          {...register("email")}
+          placeholder="email"
+        />
+        {errors.email && <p className={errorStyles}>{errors.email.message}</p>}
+        <Input
+          className={inputStyles}
+          {...register("password")}
+          type="password"
+          placeholder="password"
+        />
+        {errors.password && (
+          <p className={errorStyles}>{errors.password.message}</p>
+        )}
+        <Button
+          type="submit"
+          children="Sign In"
+          theme="red"
+          disabled={loading}
+        />
+      </form>
+      {fireBaseError && <p className={errorStyles}>{fireBaseError}</p>}
+    </>
+  );
+};
