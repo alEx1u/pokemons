@@ -9,7 +9,7 @@ import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
 import { useAuthState } from "./utils/firebase/hooks/useAuthState";
 import { SettingsPage } from "./pages/SettingsPage/SettingsPage";
 import { UsersPage } from "./pages/UsersPage/UsersPage";
-import { useAppDispatch } from "./utils/contexts/store/store";
+import { useAppDispatch, useAppSelector } from "./utils/contexts/store/store";
 import { useEffect } from "react";
 import { sessionSlice } from "./utils/contexts/store/session.slice";
 import { PokeballLoader } from "./common/loader/PokeballLoader";
@@ -26,10 +26,17 @@ const AuthApp = () => {
 export default function App() {
   const authState = useAuthState();
   const dispatch = useAppDispatch();
+  const theme = useAppSelector((state) => state.theme);
+
+  useEffect(() => {
+    document.body.classList.remove("theme--light", "theme--dark");
+    document.body.classList.add(`theme--${theme}`);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     if (!authState.isLoading && authState.data) {
-      sessionSlice.actions.logginIn();
+      dispatch(sessionSlice.actions.logginIn());
     }
   }, [authState.isLoading, authState.data, dispatch]);
 

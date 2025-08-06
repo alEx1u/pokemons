@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type Session = {
   isLoggedIn: boolean;
@@ -11,11 +11,17 @@ export type SessionState = {
   theme: Theme;
 };
 
+const getInitialTheme = (): Theme => {
+  const stored = localStorage.getItem("theme");
+  if (stored === "dark" || stored === "light") return stored;
+  return "light";
+};
+
 export const initalSessionState: SessionState = {
   session: {
     isLoggedIn: false,
   },
-  theme: "light",
+  theme: getInitialTheme(),
 };
 
 export const sessionSlice = createSlice({
@@ -30,6 +36,9 @@ export const sessionSlice = createSlice({
     },
     switchTheme: (state) => {
       state.theme = state.theme == "light" ? "dark" : "light";
+    },
+    setTheme: (state, action: PayloadAction<Theme>) => {
+      state.theme = action.payload;
     },
   },
 });

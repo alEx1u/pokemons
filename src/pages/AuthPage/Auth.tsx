@@ -31,8 +31,8 @@ const Auth = () => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <div className={styles['card__img-wrapper']}>
-          <img src={pokeForm} alt="pokemons"/>
+        <div className={styles["card__img-wrapper"]}>
+          <img src={pokeForm} alt="pokemons" />
         </div>
         <AuthLayout>
           {signinIn ? <SignIn /> : <SignUp />}

@@ -1,25 +1,25 @@
-@use '../../assets/styles/mixins' as *;
-@use '../../assets/styles/variables' as *;
+@use "../../assets/styles/mixins" as *;
+@use "../../assets/styles/variables" as *;
 
 .placeholder {
-    margin-bottom: sp(1);
-    font-weight: 400;   
+  margin-bottom: sp(1);
+  font-weight: 400;
 }
 .input {
-    width: 100%;
-    border-radius: $rounded;
-    padding: sp(3);
-    box-shadow: $shadow-sm;
-    background-color: #f5f5f5;
-    &:focus {
-        outline: none;  
-        @include ring(sp(2))    
-    }
-    &--error {
-        background-color: $color-red-100;
-        @include ring(sp(1) $color-red-400)
-    }
+  width: 100%;
+  border-radius: $rounded;
+  padding: sp(3);
+  box-shadow: var(--shadow-sm);
+  background-color: #f5f5f5;
+  &:focus {
+    outline: none;
+    @include ring(sp(2));
+  }
+  &--error {
+    background-color: $color-red-100;
+    @include ring(sp(1) $color-red-400);
+  }
 }
 .span {
-    color: $color-red-400;
+  color: $color-red-400;
 }

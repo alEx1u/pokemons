@@ -1,7 +1,28 @@
 @use './reset.scss';
+@use './variables' as *;
 
 body {
   font-family: 'Rubik', sans-serif;
+  background-color: $bg-color;
+  color: $text-color;
+  transition: $transition;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+
+  &.theme--dark {
+    background-color: $bg-color_dark;
+    color: $text-color_dark;
+
+    --shadow-sm: 0 1px 2px 0 rgba(255, 255, 255, 0.05);
+    --shadow-md: 0 1px 3px 0 rgba(255, 255, 255, 0.05), 0 1px 2px -1px rgba(255, 255, 255, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(255, 255, 255, 0.05), 0 4px 6px -4px rgba(255, 255, 255, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(255, 255, 255, 0.05), 0 8px 10px -6px rgba(255, 255, 255, 0.05);
+
+  }
 }
 
 .page {
@@ -13,9 +34,13 @@ body {
 }
 
 .card {
-  border-radius: 0.5rem;
-  background-color: white;
-  padding: 1.25rem; 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border-radius: $rounded-lg;
+  background-color: $card-bg-light;
+  box-shadow: $card-shadow-light;
+  padding: 1.25rem;
+
+  body.theme--dark {
+    background-color: $card-bg-dark;
+    box-shadow: $card-shadow-dark;
+  }
 }
