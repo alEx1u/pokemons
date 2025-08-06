@@ -1,4 +1,6 @@
-import { useRequestPokemonByName } from "../../api/hooks/useRequestPokemonByName";
+import { useRequestPokemonByName } from "../../../api/hooks/useRequestPokemonByName";
+import { PokeballLoader } from '../../loader/PokeballLoader';
+import styles from './PokemonShortCut.module.scss';
 
 interface PokemonShortCutProps {
   name: Pokemon["name"];
@@ -10,12 +12,12 @@ export const PokemonShortCut = ({ name, onClick }: PokemonShortCutProps) => {
 
   const isPokemon = !!data && !isLoading;
 
-  if (!isPokemon) return null;
+  if (!isPokemon) return <PokeballLoader/>;
 
   const pokemon = data.data;
   return (
     <div
-      className="border border-red-400 hover:border-teal-400 hover:bg-teal-400 hover:text-white text-red-400 transition rounded-2xl flex items-center justify-between px-3 py-1 h-20 w-80"
+      className={styles['pokemon-shortcut']}
       tabIndex={0}
       role="button"
       onKeyDown={(event) => {

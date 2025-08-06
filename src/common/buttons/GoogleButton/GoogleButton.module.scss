@@ -1,0 +1,22 @@
+@use '../../../assets/styles/variables' as *;
+@use '../../../assets/styles/mixins' as *;
+
+.google-button {
+    @include flex-between;
+    gap: 3px;
+    padding: sp(2) sp(3);
+    border-radius: $rounded-xl;
+    border: 1px solid #d1d5dc;
+    color: #364153;
+    transition: $transition;
+    background-color: white;
+    margin-top: 10px;
+    box-shadow: $shadow-md;
+    &:hover {
+        background-color: #f3f4f6;
+        box-shadow: $shadow-lg;
+    }
+    &:disabled {
+        opacity: 50%;
+    }
+}

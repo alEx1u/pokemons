@@ -7,6 +7,10 @@ import userNoImg from "../../assets/userNoImg.jpg";
 import { IconButton } from "../../common/buttons/IconButton/IconButton";
 import { PenIcon } from "../../common/icons/PenIcon";
 import { UploadPhotoModal } from "../../common/modals/UploadPhotoModal/UploadPhotoModal";
+import styles from "./SettingsPage.module.scss";
+import clsx from "clsx";
+import { PokeballLoader } from "../../common/loader/PokeballLoader";
+
 export const SettingsPage = () => {
   const [selectedSetting, setSelectedSetting] =
     useState<SettingModalItem | null>(null);
@@ -14,26 +18,25 @@ export const SettingsPage = () => {
 
   const authState = useAuthState();
 
-  if (!authState.data) return null;
+  if (!authState.data) return <PokeballLoader />;
 
   const user = authState.data;
 
   return (
-    <div className="page flex flex-col items-center">
-      <div className="relative w-40 h-40 flex items-center justify-center">
+    <div className={clsx("page", styles.container)}>
+      <div className={styles["img-wrapper"]}>
         <img
           src={!user.photoUrl ? userNoImg : user.photoUrl}
           alt="user photo"
-          className="h-full w-full rounded-full object-cover"
         />
-        <div className="absolute bottom-[-15px]">
+        <div className={styles.icon}>
           <IconButton
             icon={<PenIcon />}
             onClick={() => setIsShownPhotoModal(true)}
           />
         </div>
       </div>
-      <div className="card w-full">
+      <div className={clsx("card", styles.settings)}>
         <ul>
           <li>
             <Setting label="id" value={user.uid!} />

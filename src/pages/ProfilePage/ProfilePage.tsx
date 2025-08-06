@@ -1,4 +1,4 @@
-import { PokemonShortCut } from "../../common/pokemon/PokemonShortCut";
+import { PokemonShortCut } from "../../common/pokemon/PokemonShortCut/PokemonShortCut";
 import { useAuthState } from "../../utils/firebase/hooks/useAuthState";
 import { useLogoutMutation } from "../../utils/firebase/hooks/useLogoutMutation";
 import { useNavigate } from "react-router";
@@ -8,8 +8,11 @@ import { CloseButton } from "../../common/buttons/CloseButton/CloseButton";
 import { useUpdateDocumentMutation } from "../../utils/firebase/hooks/useUpdateDocumentMutation";
 import { Typography } from "../../common/typography/Typography";
 import { UserCard } from "../../common/cards/UserCard/UserCard";
-import { useAppDispatch } from '../../utils/contexts/store/store';
-import { sessionSlice } from '../../utils/contexts/store/session.slice';
+import { useAppDispatch } from "../../utils/contexts/store/store";
+import { sessionSlice } from "../../utils/contexts/store/session.slice";
+import styles from './ProfilePage.module.scss';
+import clsx from 'clsx';
+import { PokeballLoader } from '../../common/loader/PokeballLoader';
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch();
@@ -25,17 +28,7 @@ export const ProfilePage = () => {
 
   const { mutate: deletePokemon } = useUpdateDocumentMutation();
 
-  if (!authState.data)
-    return (
-      <>
-        <p>Войдите в аккаунт</p>
-        <Button
-          children="Авторизация"
-          theme="red"
-          onClick={() => navigate(ROUTES.AUTH)}
-        />
-      </>
-    );
+  if (!authState.data) return <PokeballLoader/>;
 
   const user = authState.data;
 
@@ -50,13 +43,13 @@ export const ProfilePage = () => {
   return (
     <div className="page">
       <UserCard user={user} />
-      <div className="card flex flex-col gap-4 items-center">
+      <div className={clsx('card', styles['pokemons-team__wrapper'])}>
         <Typography variant="title-regular">
           Ваша команда: {user.pokemons?.length}
         </Typography>
-        <div className="flex flex-col gap-3 mb-2">
+        <div className={styles['pokemons-team']}>
           {user.pokemons?.map((teamMember) => (
-            <div className="flex items-center gap-5" key={teamMember.id}>
+            <div className={styles['pokemons-team__item']} key={teamMember.id}>
               <PokemonShortCut
                 name={teamMember.name}
                 onClick={() => navigate(`/pokemon/${teamMember.name}`)}
@@ -77,10 +70,10 @@ export const ProfilePage = () => {
           ))}
         </div>
       </div>
-      <div className="pt-4 flex justify-center">
+      <div className={styles.logout}>
         <Button
           children={logoutMutationPending ? "Logging out..." : "Logout"}
-          theme="blue"
+          theme="red"
           disabled={logoutMutationPending}
           onClick={() => {
             logoutMutation();

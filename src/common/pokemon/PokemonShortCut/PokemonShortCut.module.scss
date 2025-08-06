@@ -1,0 +1,16 @@
+@use '../../../assets/styles/variables' as *;
+@use '../../../assets/styles/mixins' as *;
+
+.pokemon-shortcut {
+    height: sp(20);
+    width: sp(80);
+    @include flex-between;
+    padding: sp(1) sp(3);
+    border-radius: $rounded-2xl;
+    transition: $transition;
+    border: 1px solid $color-red-400;
+    &:hover {
+        background-color: $color-red-400;
+        color: white
+    }
+}

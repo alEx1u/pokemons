@@ -1,0 +1,13 @@
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+.typography {
+  font-family: $font;
+
+  &--title         { @include font-variant(title); text-transform: capitalize; }
+  &--sub-title     { @include font-variant(sub-title); text-transform: capitalize; }
+  &--title-regular { @include font-variant(title-regular); }
+  &--body          { @include font-variant(body); }
+  &--title-body    { @include font-variant(title-body); }
+  &--sub-body      { @include font-variant(sub-body); }
+}

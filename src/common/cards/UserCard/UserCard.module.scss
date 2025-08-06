@@ -1,0 +1,55 @@
+@use "../../../assets/styles/variables" as *;
+@use "../../../assets/styles/mixins" as *;
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  gap: sp(6);
+  &__body {
+    display: flex;
+    gap: sp(6);
+  }
+  &__uid {
+    flex-wrap: wrap;
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+  &__avatar {
+    height: sp(20);
+    width: sp(20);
+    border-radius: $rounded-lg;
+  }
+  &__data {
+    font-weight: 400;
+  }
+  &__display-name {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+  &__pokemons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: sp(3);
+    border-radius: $rounded-lg;
+    background-color: $color-red-100;
+    padding: sp(4);
+  }
+  &__pokemon {
+    @include flex-center;
+    &__item {
+      @include flex-center;
+      height: sp(16);
+      width: sp(16);
+      overflow: hidden;
+      border-radius: 100%;
+      border: 1px solid $color-red-400;
+      &:hover {
+        background-color: $color-red-400;
+        transition: $transition;
+      }
+      & img {
+        transform: scale(1.5);
+      }
+    }
+  }
+}

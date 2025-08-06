@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Modal, ModalProps } from "../Modal/Modal";
 import Button from "../../buttons/Button/Button";
 import { useUploadFile } from '../../../utils/imgbb/hooks/useUploadFile';
-
+import styles from './UploadPhotoModal.module.scss';
 interface UploadPhotoModalProps extends Omit<ModalProps, "children"> {
   uid: User["uid"];
 }
@@ -28,7 +28,7 @@ export const UploadPhotoModal = ({
 
   return (
     <Modal {...props} onClose={onClose}>
-      <div className="flex flex-col gap-1 items-center">
+      <div className={styles['upload-container']}>
         <label htmlFor="upload-button">
           <input
             type="file"

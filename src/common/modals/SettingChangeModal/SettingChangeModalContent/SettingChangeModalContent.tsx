@@ -7,11 +7,12 @@ import { Input } from "../../../input/Input";
 import { z } from "zod";
 import Button from "../../../buttons/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import styles from "./SettingChangeModalContent.module.scss";
+import { PokeballLoader } from '../../../loader/PokeballLoader';
 const settingSchemas = {
   displayName: z.string().min(3, "Name should be at least 3 characters"),
   email: z.string().email("Inalid Email"),
-  city: z.string().min(2, "Real city")
+  city: z.string().min(2, "Real city"),
 };
 
 export type SettingModalItem = {
@@ -52,7 +53,7 @@ export const SettingChangeModalContent = ({
   const isLoading = isSubmitting || updateDocumentMutation.isPending;
   const currentValue = watch(setting.type);
 
-  if (!authState.data) return null;
+  if (!authState.data) return <PokeballLoader/>;
 
   const user = authState.data;
 
@@ -77,7 +78,7 @@ export const SettingChangeModalContent = ({
         error={errors[setting.type]?.message}
         defaultValue={setting.value}
       />
-      <div className="mt-1.5 flex gap-2 justify-end">
+      <div className={styles.buttons}>
         <Button
           theme="blue"
           type="submit"

@@ -1,26 +1,32 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
-
+import styles from './Button.module.scss';
+import clsx from 'clsx';
 type Theme = "red" | "blue";
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   theme: Theme;
+  square?: boolean;
 }
 
 const Button = ({
   children,
   theme,
   className = "",
+  square,
   ...props
 }: IButtonProps) => {
-  const baseStyles =
-    "border py-2 px-1 rounded-xl text-sm w-50 text-amber-50 hover:shadow-xl transition";
-  const themeStyles =
-    theme == "red"
-      ? "bg-red-400  hover:bg-red-500"
-      : "bg-teal-400 hover:bg-teal-500";
+
+  const cls = clsx(
+    styles.button, 
+    theme == 'red' && styles['button--red'],
+    theme == 'blue' && styles['button--blue'],
+    square && styles['button--square'],
+    className
+  )
+
   return (
-    <button className={`${baseStyles} ${themeStyles} ${className}`} {...props}>
+    <button className={cls} {...props}>
       {children}
     </button>
   );
