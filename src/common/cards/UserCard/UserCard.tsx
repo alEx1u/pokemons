@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import styles from "./UserCard.module.css";
+import styles from "./UserCard.module.scss";
 import userNoImg from "../../../assets/userNoImg.jpg";
 
 interface UserCardProps {
@@ -12,26 +12,27 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
 
   return (
     <div className="card">
-      <div className={styles.content}>
-        <div className={styles.body}>
+      <div className={styles['user-card']}>
+        <div className={styles['user-card__body']}>
           <img
             src={!user.photoUrl ? userNoImg : user.photoUrl}
             alt="user photo"
-            className="h-20 rounded object-cover"
+            className={styles['user-card__avatar']}
           />
 
           <div>
-            <div className={styles.display_name}>{user.displayName}</div>
-            <div className={styles.data}>{user.email}</div>
-            <div className={styles.data}>{user.city}</div>
+            <div className={styles['user-card__display-name']}>{user.displayName}</div>
+            <div className={styles['user-card__data']}>{user.email}</div>
+            <div className={styles['user-card__data']}>{user.city}</div>
           </div>
         </div>
 
         {!!pokemons.length && (
-          <div className={styles.pokemons}>
+          <div className={styles['user-card__pokemons']}>
             {pokemons.map((pokemon) => (
-              <div key={pokemon.id} className={styles.pokemon}>
+              <div key={pokemon.id} className={styles['user-card__pokemon']}>
                 <div
+                  className={styles['user-card__pokemon__item']}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(event) => {

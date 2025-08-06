@@ -1,0 +1,9 @@
+@use '../../../assets/styles/variables' as *;
+
+.upload-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: sp(1);
+    padding: sp(3);
+}

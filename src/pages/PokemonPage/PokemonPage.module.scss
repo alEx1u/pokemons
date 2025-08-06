@@ -1,0 +1,39 @@
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+
+.wrong {
+    margin-top: 40vh;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: sp(5);
+}
+
+.pokemon-card {
+    padding: sp(10);
+    margin: sp(4);
+    border: 1px solid;
+    border-radius: $rounded-4xl;
+    @include flex-center;
+    flex-direction: column;
+    height: sp(120);
+    width: sp(90);
+    img {
+        width: sp(50);
+    }  
+    &__stats {
+        display: flex;
+        justify-content: space-between;
+        ul {
+            text-align: start;
+            li {
+                text-decoration: underline;
+            }
+        }
+    }
+}

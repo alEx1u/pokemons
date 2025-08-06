@@ -1,0 +1,35 @@
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+.navbar {
+    @include flex-between;
+    height: sp(10);
+    padding: sp(10);
+    box-shadow: $shadow-lg;
+    &__links {
+        @include flex-between;
+        gap: sp(3);
+    }
+    &__link {
+        color: black;
+        transition: $transition;
+        &:hover:not(.navbar__link--active) {
+            color: $color-red-500
+        }
+        &--active {
+            color: $color-red-400;
+        }
+        img {
+            width: sp(10);
+            height: sp(10);
+            border-radius: 100%;
+            object-fit: cover;
+            border: 1px solid transparent;
+            transition: $transition;
+            &:hover {
+                transform: scale(1.1);
+                border-color: $color-red-400;
+            }
+        }
+    }
+}

@@ -3,6 +3,9 @@ import { ROUTES } from "../../utils/constants/routes";
 import { Typography } from "../typography/Typography";
 import { useAuthState } from "../../utils/firebase/hooks/useAuthState";
 import userNoImg from "../../assets/userNoImg.jpg";
+import styles from './Navbar.module.scss';
+import clsx from 'clsx';
+import { ThemeButton } from '../buttons/ThemeButton/ThemeButton';
 
 const Navbar = () => {
   const location = useLocation();
@@ -21,40 +24,36 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="flex h-10 p-10 justify-between  items-center shadow-lg">
-        <div className="flex items-center gap-3">
-          <div>
-            <Typography>{"GCTA"}</Typography>
-            <Typography variant="sub-body">{"gotta catch them all"}</Typography>
-          </div>
-          {/* img */}
+      <nav className={styles.navbar}>
+        <div>
+          <Typography>{"GCTA"}</Typography>
+          <Typography variant="sub-body">{"gotta catch them all"}</Typography>
         </div>
-        <ul className="flex items-center gap-3">
+        <ul className={styles['navbar__links']}>
+          <li>
+            <ThemeButton/>
+          </li>
           {navItems.map(({ label, to }) => {
             const isActive = location.pathname == to;
+            const linksClass = clsx(styles.navbar__link, {
+              [styles['navbar__link--active']]: isActive
+            });
+
             return (
-              <Typography variant="title-regular" key={label}>
-                <Link
-                  key={label}
-                  to={to}
-                  className={`transition-colors duration-200 hover:text-red-500
-                            ${
-                              isActive
-                                ? "text-red-400 font-semibold"
-                                : "text-black"
-                            }`}
-                >
-                  {label !== "Profile" ? (
-                    label
-                  ) : (
-                    <img
-                      src={!user || !user.photoUrl ? userNoImg : user.photoUrl}
-                      alt="user photo"
-                      className="h-10 w-10 rounded-full object-cover"
-                    />
-                  )}
-                </Link>
-              </Typography>
+              <li key={label}>
+                <Typography variant="title-regular">
+                  <Link to={to} className={linksClass}                  >
+                    {label === "Profile" ? (
+                      <img
+                        src={user?.photoUrl ?? userNoImg}
+                        alt="user photo"
+                      />
+                    ) : (
+                      label
+                    ) }
+                  </Link>
+                </Typography>
+              </li>
             );
           })}
         </ul>

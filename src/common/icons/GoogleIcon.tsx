@@ -1,10 +1,6 @@
-export const GoogleIcon = ({
-  className = "w-5 h-5",
-}: {
-  className?: string;
-}) => (
+export const GoogleIcon = () => (
   <svg
-    className={className}
+    style={{width : '1.5rem', height: '1.5rem'}}
     viewBox="0 0 533.5 544.3"
     xmlns="http://www.w3.org/2000/svg"
   >

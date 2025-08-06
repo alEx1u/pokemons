@@ -1,0 +1,48 @@
+@use '../../../assets/styles/mixins' as *;
+@use '../../../assets/styles/variables' as *;
+
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  opacity: 0.2;
+}
+
+
+.modal_container {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  margin: auto;
+  width: 99%;
+  overflow: hidden;
+  overflow-y: auto;
+  border-top-left-radius: $rounded-2xl;
+  border-top-right-radius: $rounded-2xl;
+  background-color: white;
+  padding: sp(6) sp(5); 
+  outline: none;
+  transition: bottom 0.3s;
+}
+
+@include respond(md) {
+  .modal_container {
+    width: 24rem; 
+    border-radius: $rounded-2xl; 
+    padding: 0 sp(10);
+    transition: none;
+    bottom: 50%;
+  }
+}
+
+.modal_open .modal_container {
+  bottom: 0;
+}
+

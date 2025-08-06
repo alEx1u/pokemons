@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import styles from "./Modal.module.css";
+import styles from "./Modal.module.scss";
 
 export interface ModalProps {
   isShowing: boolean;

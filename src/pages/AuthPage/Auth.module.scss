@@ -1,0 +1,66 @@
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+.container {
+    @include flex-center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.card {
+    @include flex-center;
+    height: 600px;
+    &__img-wrapper {
+        border-radius: $rounded-2xl;
+        box-shadow: $shadow-xl;
+    }
+    img {
+        display: block;
+        box-shadow: $shadow-xl;
+        width: 100%;
+        height: 600px;   
+        border-radius: $rounded-2xl;
+        object-fit: cover;
+    }
+}
+
+.auth {
+    @include flex-center;
+    flex-direction: column;
+    height: 100%;
+    gap: sp(1);
+    width: sp(65);
+    border-radius: $rounded-2xl;
+    background-color: #f1f1f1;
+    padding: sp(3);
+    box-shadow: $shadow-xl;
+    &__form {
+        @include flex-center;
+        flex-direction: column;
+        gap: sp(2);
+    }
+}
+
+.input {
+    border: solid 1px $color-teal-400;
+    border-radius: $rounded;
+    padding: sp(2) sp(1);
+    transition: $transition;
+    &:hover {
+        box-shadow: $shadow-lg;
+    }
+    &:focus {
+        outline: none;
+        box-shadow: $shadow-lg;
+        border-color: $color-teal-500;
+    }
+    &--error {
+        border-color: $color-red-500;
+    }
+}
+
+.error {
+    margin-top: -4px;
+    font-size: 10px;
+    color: $color-red-700;
+}

@@ -1,8 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import Navbar from "./common/header/Navbar";
 import PokemonsPage from "./pages/PokemonsPage/PokemonsPage";
-import Pokedex from "./pages/Pokedex/Pokedex";
-import "./assets/css/global.css";
+import './assets/styles/global.scss';
 import { ROUTES } from "./utils/constants/routes";
 import PokemonPage from "./pages/PokemonPage/PokemonPage";
 import Auth from "./pages/AuthPage/Auth";
@@ -13,6 +12,7 @@ import { UsersPage } from "./pages/UsersPage/UsersPage";
 import { useAppDispatch } from './utils/contexts/store/store';
 import { useEffect } from 'react';
 import { sessionSlice } from './utils/contexts/store/session.slice';
+import { PokeballLoader } from './common/loader/PokeballLoader';
 
 const AuthApp = () => {
   return (
@@ -27,13 +27,15 @@ export default function App() {
   const authState = useAuthState();
   const dispatch = useAppDispatch();
 
+
+
   useEffect(() => {
-    if(!authState.isLoading) {
-      dispatch(sessionSlice.actions.setUser(authState.data ?? null));
+    if(!authState.isLoading && authState.data) {
+      sessionSlice.actions.logginIn();
     }
   }, [authState.isLoading, authState.data, dispatch]);
 
-  if (authState.isLoading) return null;
+  if (authState.isLoading) return <PokeballLoader/>;
 
   return (
     <BrowserRouter>
@@ -43,7 +45,6 @@ export default function App() {
       ) : (
         <Routes>
           <Route path={ROUTES.POKEMONS} element={<PokemonsPage />} />
-          <Route path={ROUTES.POKEDEX} element={<Pokedex />} />
           <Route path={ROUTES.POKEMON} element={<PokemonPage />} />
           <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
           <Route path={ROUTES.SETTINGS} element={<SettingsPage />} />

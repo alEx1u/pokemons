@@ -1,26 +1,22 @@
 import clsx from "clsx";
+import styles from "./Typography.module.scss";
 
+const variantList = [
+  "title",
+  "sub-title",
+  "title-regular",
+  "body",
+  "title-body",
+  "sub-body",
+] as const;
+
+type TypographyVariant = (typeof variantList)[number];
 interface TitleProps {
   tag?: "h1" | "h2" | "span" | "div";
-  variant?:
-    | "title"
-    | "sub-title"
-    | "title-regular"
-    | "body"
-    | "sub-body"
-    | "title-body";
+  variant?: TypographyVariant;
   children: React.ReactNode;
   className?: string;
 }
-
-const fontTypes = {
-  title: "text-xl font-semibold capitalize",
-  "sub-title": "text-lg font-medium capitalize",
-  "title-regular": "text-lg font-normal",
-  body: "text-base font-medium",
-  "title-body": "text-base font-semibold",
-  "sub-body": "text-sm font-normal",
-};
 
 export const Typography = ({
   children,
@@ -28,10 +24,14 @@ export const Typography = ({
   variant = "title",
   className,
 }: TitleProps) => {
+  if (!variantList.includes(variant)) {
+    throw new Error(`Unknown typography variant: ${variant}`);
+  }
   const Component = tag;
+  const variantClass = styles["typography--" + variant];
 
   return (
-    <Component className={clsx(className, [fontTypes[variant]])}>
+    <Component className={clsx(styles.typography, variantClass, className)}>
       {children}
     </Component>
   );

@@ -4,7 +4,8 @@ import { baseQuery } from "../../api/requests/base";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Typography } from "../../common/typography/Typography";
-
+import styles from './PokemonsPage.module.scss';
+import { PokeballLoader } from '../../common/loader/PokeballLoader';
 const PokemonsPage = () => {
   const limit = 50;
   const { ref, inView } = useInView();
@@ -29,11 +30,9 @@ const PokemonsPage = () => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  if (isFetching || !data) {
-    return <div className="text-center mt-[40vh]">Загрузка...</div>;
-  }
+  if (isFetching || !data) return <PokeballLoader/>;
   if (error || !data.pages)
-    return <div className="text-center mt-[40vh]">Ошибка</div>;
+    return <div className={styles.wrong}>Ошибка</div>;
 
   const pokemons = data.pages.reduce(
     (pokemons: NamedAPIResource[], { data }) => [...pokemons, ...data.results],
@@ -42,14 +41,14 @@ const PokemonsPage = () => {
 
   return (
     <>
-      <Typography variant="title" className="text-center mt-5">
+      <Typography variant="title" className={styles.title}>
         Pokemon List
       </Typography>
-      <div className="page flex flex-wrap gap-5 mt-5 items-center justify-center">
+      <div className={styles.pokemons}>
         {pokemons.map((pokemon) => (
           <div
             key={pokemon.name}
-            className="border rounded p-3 shadow-md hover:shadow-2xl w-[25vw] text-center"
+            className={styles['pokemons__pokemon-item']}
             onClick={() => navigate(`/pokemon/${pokemon.name}`)}
             role="button"
             tabIndex={0}
@@ -63,14 +62,10 @@ const PokemonsPage = () => {
             <Typography variant="body">{pokemon.name}</Typography>
           </div>
         ))}
-        <div className="h-[1px]" ref={ref}></div>
+        <div ref={ref}></div>
       </div>
     </>
   );
 };
 
 export default PokemonsPage;
-
-// const buttonStyles =
-//   "border rounded p-1.5 hover:bg-red-300 transition-colors";
-// const disabledStyles = "opacity-0 cursor-not-allowed";

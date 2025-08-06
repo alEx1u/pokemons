@@ -10,11 +10,8 @@ import Button from "../../../common/buttons/Button/Button";
 import { Input } from "../../../common/input/Input";
 import { useAppDispatch } from '../../../utils/contexts/store/store';
 import { sessionSlice } from '../../../utils/contexts/store/session.slice';
-
-interface SignInProps {
-  inputStyles: string;
-  errorStyles: string;
-}
+import styles from '../Auth.module.scss';
+import clsx from 'clsx';
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
@@ -23,7 +20,7 @@ const loginSchema = z.object({
 
 type FormType = z.infer<typeof loginSchema>;
 
-export const SignIn = ({ inputStyles, errorStyles }: SignInProps) => {
+export const SignIn = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [fireBaseError, setFireBaseError] = useState<string | null>(null);
@@ -72,30 +69,35 @@ export const SignIn = ({ inputStyles, errorStyles }: SignInProps) => {
 
   return (
     <>
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles['auth__form']} onSubmit={handleSubmit(onSubmit)}>
         <Input
-          className={inputStyles}
+          className={clsx(styles.input, {
+            [styles['input--error']] : errors.email
+          } )}
           {...register("email")}
           placeholder="email"
         />
-        {errors.email && <p className={errorStyles}>{errors.email.message}</p>}
+        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
         <Input
-          className={inputStyles}
+          className={clsx(styles.input, {
+            [styles['input--error']] : errors.password
+          } )}
           {...register("password")}
           type="password"
           placeholder="password"
         />
         {errors.password && (
-          <p className={errorStyles}>{errors.password.message}</p>
+          <p className={styles.error}>{errors.password.message}</p>
         )}
         <Button
+          style={{ marginTop: 15 }}
           type="submit"
           children="Sign In"
           theme="red"
           disabled={loading}
         />
       </form>
-      {fireBaseError && <p className={errorStyles}>{fireBaseError}</p>}
+      {fireBaseError && <p className={styles.error}>{fireBaseError}</p>}
     </>
   );
 };

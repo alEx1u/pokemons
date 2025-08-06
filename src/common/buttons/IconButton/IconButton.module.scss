@@ -1,0 +1,51 @@
+@use "../../../assets/styles/variables" as *;
+@use "../../../assets/styles/mixins" as *;
+
+
+.icon-button {
+  @include flex-center;
+  border-radius: $rounded-2xl;
+  background-color: inherit;
+  padding: sp(1);
+  box-shadow: $shadow-sm;
+  transition: $transition;
+  & > svg {
+    width: sp(11); 
+    height: sp(11);
+  }
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  &--contained {
+    background-color: $color-red-400;
+    fill: white;
+    &:hover {
+      background-color: $color-red-500;
+    }
+  }
+  &--outlined {
+    border: 1px solid $color-red-400;
+    fill: $color-red-400;
+    &:hover {
+      border-color: $color-red-500;
+      fill: $color-red-500;
+    }
+    &:active {
+      border-color: $color-red-500;
+      fill: $color-red-500;
+    }
+  }
+  &--icon {
+    fill: $color-red-200;
+    stroke: $color-red-200;
+    box-shadow: none;
+    &:hover {
+      fill: $color-red-400;
+      stroke: $color-red-400;
+    }
+    &:active {
+      fill: $color-red-400;
+    }
+  }
+}

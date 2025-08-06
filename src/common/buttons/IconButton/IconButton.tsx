@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import styles from "./IconButton.module.css";
+import styles from "./IconButton.module.scss";
 
 type IconButtonVariant = "contained" | "outlined" | "icon";
 export interface IconButtonProps extends React.ComponentPropsWithRef<"button"> {
@@ -13,11 +13,11 @@ export const IconButton: React.FC<IconButtonProps> = ({
   icon,
   ...props
 }) => {
-  const classes = clsx(styles.button, styles[variant]);
+  const cls = clsx(styles['icon-button'], styles[`icon-button--${variant}`]);
 
   return (
     <button
-      className={classes}
+      className={cls}
       disabled={disabled}
       aria-disabled={disabled}
       {...props}

@@ -10,11 +10,8 @@ import { Input } from "../../../common/input/Input";
 import { useRequestRegisterWithEmailAndPasswor } from "../../../utils/firebase/hooks/useRequestRegisterWithEmailAndPassword";
 import { useAppDispatch } from '../../../utils/contexts/store/store';
 import { sessionSlice } from '../../../utils/contexts/store/session.slice';
-
-interface SignUpProps {
-  inputStyles: string;
-  errorStyles: string;
-}
+import styles from '../Auth.module.scss';
+import clsx from 'clsx';
 
 const registerSchema = z.object({
   firstName: z.string().min(3, "First name should be here"),
@@ -26,7 +23,7 @@ const registerSchema = z.object({
 
 type FormType = z.infer<typeof registerSchema>;
 
-export const SignUp = ({ inputStyles, errorStyles }: SignUpProps) => {
+export const SignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [fireBaseError, setFireBaseError] = useState<string | null>(null);
@@ -95,47 +92,57 @@ export const SignUp = ({ inputStyles, errorStyles }: SignUpProps) => {
 
   return (
     <>
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles['auth__form']} onSubmit={handleSubmit(onSubmit)}>
         <Input
-          className={inputStyles}
+          className={clsx(styles.input, {
+            [styles['input--error']] : errors.firstName
+          } )}
           {...register("firstName")}
           placeholder="firstname"
         />
         {errors.firstName && (
-          <p className={errorStyles}>{errors.firstName.message}</p>
+          <p className={styles.error}>{errors.firstName.message}</p>
         )}
         <Input
-          className={inputStyles}
+          className={clsx(styles.input, {
+            [styles['input--error']] : errors.lastName
+          } )}
           {...register("lastName")}
           placeholder="lastname"
         />
         {errors.lastName && (
-          <p className={errorStyles}>{errors.lastName.message}</p>
+          <p className={styles.error}>{errors.lastName.message}</p>
         )}
         <Input
-          className={inputStyles}
+          className={clsx(styles.input, {
+            [styles['input--error']] : errors.city
+          } )}
           {...register("city")}
           placeholder="city"
         />
-        {errors.city && <p className={errorStyles}>{errors.city.message}</p>}
+        {errors.city && <p className={styles.error}>{errors.city.message}</p>}
         <Input
-          className={inputStyles}
+          className={clsx(styles.input, {
+            [styles['input--error']] : errors.city
+          } )}
           {...register("email")}
           placeholder="email"
         />
-        {errors.email && <p className={errorStyles}>{errors.email.message}</p>}
+        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
         <Input
-          className={inputStyles}
+          className={clsx(styles.input, {
+            [styles['input--error']] : errors.password
+          } )}
           {...register("password")}
           type="password"
           placeholder="password"
         />
         {errors.password && (
-          <p className={errorStyles}>{errors.password.message}</p>
+          <p className={styles.error}>{errors.password.message}</p>
         )}
-        <Button children="Sign Up" theme="red" disabled={loading} />
+        <Button style={{ marginTop: 10 }} children="Sign Up" theme="red" disabled={loading} />
       </form>
-      {fireBaseError && <p className={errorStyles}>{fireBaseError}</p>}
+      {fireBaseError && <p className={styles.error}>{fireBaseError}</p>}
     </>
   );
 };
