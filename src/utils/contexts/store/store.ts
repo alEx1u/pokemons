@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
-import { useSelector } from "./../../../../node_modules/react-redux/src/hooks/useSelector";
-import { configureStore } from "@reduxjs/toolkit";
-import { useStore } from "react-redux";
+import { useDispatch } from 'react-redux';
+import { useSelector } from './../../../../node_modules/react-redux/src/hooks/useSelector';
+import { configureStore } from '@reduxjs/toolkit';
+import { useStore } from 'react-redux';
 import { sessionSlice } from './session.slice';
 
 export const store = configureStore({

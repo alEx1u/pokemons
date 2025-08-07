@@ -1,18 +1,18 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router";
-import Navbar from "./common/header/Navbar";
-import PokemonsPage from "./pages/PokemonsPage/PokemonsPage";
-import "./assets/styles/global.scss";
-import { ROUTES } from "./utils/constants/routes";
-import PokemonPage from "./pages/PokemonPage/PokemonPage";
-import Auth from "./pages/AuthPage/Auth";
-import { ProfilePage } from "./pages/ProfilePage/ProfilePage";
-import { useAuthState } from "./utils/firebase/hooks/useAuthState";
-import { SettingsPage } from "./pages/SettingsPage/SettingsPage";
-import { UsersPage } from "./pages/UsersPage/UsersPage";
-import { useAppDispatch, useAppSelector } from "./utils/contexts/store/store";
-import { useEffect } from "react";
-import { sessionSlice } from "./utils/contexts/store/session.slice";
-import { PokeballLoader } from "./common/loader/PokeballLoader";
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+import Navbar from './common/header/Navbar';
+import PokemonsPage from './pages/PokemonsPage/PokemonsPage';
+import './assets/styles/global.scss';
+import { ROUTES } from './utils/constants/routes';
+import PokemonPage from './pages/PokemonPage/PokemonPage';
+import Auth from './pages/AuthPage/Auth';
+import { ProfilePage } from './pages/ProfilePage/ProfilePage';
+import { useAuthState } from './utils/firebase/hooks/useAuthState';
+import { SettingsPage } from './pages/SettingsPage/SettingsPage';
+import { UsersPage } from './pages/UsersPage/UsersPage';
+import { useAppDispatch, useAppSelector } from './utils/contexts/store/store';
+import { useEffect } from 'react';
+import { sessionSlice } from './utils/contexts/store/session.slice';
+import { PokeballLoader } from './common/loader/PokeballLoader';
 
 const AuthApp = () => {
   return (
@@ -29,9 +29,9 @@ export default function App() {
   const theme = useAppSelector((state) => state.theme);
 
   useEffect(() => {
-    document.body.classList.remove("theme--light", "theme--dark");
+    document.body.classList.remove('theme--light', 'theme--dark');
     document.body.classList.add(`theme--${theme}`);
-    localStorage.setItem("theme", theme);
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   useEffect(() => {

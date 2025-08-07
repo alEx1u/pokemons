@@ -1,5 +1,5 @@
-import { UserCredential, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { UserCredential, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
 export const loginWithEmailAndPassword = async (
   email: string,

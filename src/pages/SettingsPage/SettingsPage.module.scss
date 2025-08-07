@@ -2,31 +2,31 @@
 @use '../../assets/styles/mixins' as *;
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .img-wrapper {
-    position: relative;
-    width: sp(45);
-    margin-bottom: sp(10);
-    @include flex-center;
-    img {
-        border-radius: 50%;
-        width: 100%;
-        object-fit: cover;
-    }
-    .icon {
-        position: absolute;
-        bottom: -15px;
-    }
+  position: relative;
+  width: sp(45);
+  margin-bottom: sp(10);
+  @include flex-center;
+  img {
+    border-radius: 50%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .icon {
+    position: absolute;
+    bottom: -15px;
+  }
 }
 
 .settings {
-    width: 100%;
+  width: 100%;
 }
 
 .setting {
-    @include flex-between;
+  @include flex-between;
 }

@@ -1,19 +1,18 @@
-import { useAuthState } from "../../utils/firebase/hooks/useAuthState";
-import { useState } from "react";
-import { Setting } from "./Settings/Setting";
-import { SettingChangeModal } from "../../common/modals/SettingChangeModal/SettingChangeModal";
-import { SettingModalItem } from "../../common/modals/SettingChangeModal/SettingChangeModalContent/SettingChangeModalContent";
-import userNoImg from "../../assets/userNoImg.jpg";
-import { IconButton } from "../../common/buttons/IconButton/IconButton";
-import { PenIcon } from "../../common/icons/PenIcon";
-import { UploadPhotoModal } from "../../common/modals/UploadPhotoModal/UploadPhotoModal";
-import styles from "./SettingsPage.module.scss";
-import clsx from "clsx";
-import { PokeballLoader } from "../../common/loader/PokeballLoader";
+import { useAuthState } from '../../utils/firebase/hooks/useAuthState';
+import { useState } from 'react';
+import { Setting } from './Settings/Setting';
+import { SettingChangeModal } from '../../common/modals/SettingChangeModal/SettingChangeModal';
+import { SettingModalItem } from '../../common/modals/SettingChangeModal/SettingChangeModalContent/SettingChangeModalContent';
+import userNoImg from '../../assets/userNoImg.jpg';
+import { IconButton } from '../../common/buttons/IconButton/IconButton';
+import { PenIcon } from '../../common/icons/PenIcon';
+import { UploadPhotoModal } from '../../common/modals/UploadPhotoModal/UploadPhotoModal';
+import styles from './SettingsPage.module.scss';
+import clsx from 'clsx';
+import { PokeballLoader } from '../../common/loader/PokeballLoader';
 
 export const SettingsPage = () => {
-  const [selectedSetting, setSelectedSetting] =
-    useState<SettingModalItem | null>(null);
+  const [selectedSetting, setSelectedSetting] = useState<SettingModalItem | null>(null);
   const [isShownPhotoModal, setIsShownPhotoModal] = useState<boolean>(false);
 
   const authState = useAuthState();
@@ -23,20 +22,14 @@ export const SettingsPage = () => {
   const user = authState.data;
 
   return (
-    <div className={clsx("page", styles.container)}>
-      <div className={styles["img-wrapper"]}>
-        <img
-          src={!user.photoUrl ? userNoImg : user.photoUrl}
-          alt="user photo"
-        />
+    <div className={clsx('page', styles.container)}>
+      <div className={styles['img-wrapper']}>
+        <img src={!user.photoUrl ? userNoImg : user.photoUrl} alt="user photo" />
         <div className={styles.icon}>
-          <IconButton
-            icon={<PenIcon />}
-            onClick={() => setIsShownPhotoModal(true)}
-          />
+          <IconButton icon={<PenIcon />} onClick={() => setIsShownPhotoModal(true)} />
         </div>
       </div>
-      <div className={clsx("card", styles.settings)}>
+      <div className={clsx('card', styles.settings)}>
         <ul>
           <li>
             <Setting label="id" value={user.uid!} />
@@ -44,10 +37,10 @@ export const SettingsPage = () => {
           <li>
             <Setting
               label="Email"
-              value={user.email !== "" && user.email ? user.email : "none"}
+              value={user.email !== '' && user.email ? user.email : 'none'}
               onClick={() =>
                 setSelectedSetting({
-                  type: "email",
+                  type: 'email',
                   value: user.email,
                 })
               }
@@ -56,14 +49,10 @@ export const SettingsPage = () => {
           <li>
             <Setting
               label="Your name"
-              value={
-                user.displayName !== "" && user.displayName
-                  ? user.displayName
-                  : "none"
-              }
+              value={user.displayName !== '' && user.displayName ? user.displayName : 'none'}
               onClick={() =>
                 setSelectedSetting({
-                  type: "displayName",
+                  type: 'name',
                   value: user.displayName,
                 })
               }
@@ -72,10 +61,10 @@ export const SettingsPage = () => {
           <li>
             <Setting
               label="City"
-              value={user.city !== "" && user.city ? user.city : "none"}
+              value={user.city !== '' && user.city ? user.city : 'none'}
               onClick={() =>
                 setSelectedSetting({
-                  type: "city",
+                  type: 'city',
                   value: user.city,
                 })
               }
@@ -88,10 +77,7 @@ export const SettingsPage = () => {
         uid={user.uid}
         onClose={() => setIsShownPhotoModal(false)}
       />
-      <SettingChangeModal
-        setting={selectedSetting}
-        onClose={() => setSelectedSetting(null)}
-      />
+      <SettingChangeModal setting={selectedSetting} onClose={() => setSelectedSetting(null)} />
     </div>
   );
 };

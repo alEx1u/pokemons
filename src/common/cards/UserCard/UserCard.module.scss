@@ -1,5 +1,5 @@
-@use "../../../assets/styles/variables" as *;
-@use "../../../assets/styles/mixins" as *;
+@use '../../../assets/styles/variables' as *;
+@use '../../../assets/styles/mixins' as *;
 
 .user-card {
   display: flex;
@@ -53,7 +53,6 @@
     }
   }
 }
-
 
 :global(body.theme--dark) .user-card__pokemons {
   background-color: #2c1e1e;

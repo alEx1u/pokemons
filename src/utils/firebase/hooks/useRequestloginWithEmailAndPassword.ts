@@ -1,5 +1,5 @@
-import { useMutation, UseMutationOptions } from "@tanstack/react-query";
-import { loginWithEmailAndPassword } from "../requests/loginWithEmailAndPassword";
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { loginWithEmailAndPassword } from '../requests/loginWithEmailAndPassword';
 
 interface LoginPayload {
   email: string;
@@ -12,9 +12,8 @@ export const useRequestloginWithEmailAndPassword = (
   options?: UseMutationOptions<LoginResponse, Error, LoginPayload>
 ) => {
   return useMutation({
-    mutationKey: ["loginWithEmailAndPassword"],
-    mutationFn: async ({ email, password }) =>
-      loginWithEmailAndPassword(email, password),
+    mutationKey: ['loginWithEmailAndPassword'],
+    mutationFn: async ({ email, password }) => loginWithEmailAndPassword(email, password),
     ...(options ?? {}),
   });
 };

@@ -1,5 +1,5 @@
-@use "../../assets/styles/variables" as *;
-@use "../../assets/styles/mixins" as *;
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
 
 .navbar {
   @include flex-between;
@@ -11,12 +11,7 @@
     gap: sp(3);
   }
   &__link {
-    &:hover:not(.navbar__link--active) {
-      color: $color-red-500;
-    }
-    &--active {
-      color: $color-red-400;
-    }
+    transition: $transition;
     img {
       width: sp(10);
       height: sp(10);
@@ -25,6 +20,17 @@
       border: 1px solid transparent;
       transition: $transition;
       &:hover {
+        transform: scale(1.1);
+        border-color: $color-red-400;
+      }
+    }
+    &:hover:not(.navbar__link--active) {
+      color: $color-red-400;
+    }
+    &--active {
+      color: $color-red-400;
+      text-decoration: underline;
+      img {
         transform: scale(1.1);
         border-color: $color-red-400;
       }

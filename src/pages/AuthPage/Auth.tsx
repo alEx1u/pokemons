@@ -1,15 +1,15 @@
-import { ReactNode, useState } from "react";
-import { useNavigate } from "react-router";
-import Button from "../../common/buttons/Button/Button";
-import { ROUTES } from "../../utils/constants/routes";
-import { useLoginWithGoogle } from "../../utils/firebase/hooks/useLoginWithGoogle";
-import { SignUp } from "./SignUp/SignUp";
-import { SignIn } from "./SignIn/SignIn";
-import { GoogleButton } from "../../common/buttons/GoogleButton/GoogleButton";
-import { useAppDispatch } from "../../utils/contexts/store/store";
-import { sessionSlice } from "../../utils/contexts/store/session.slice";
-import styles from "./Auth.module.scss";
-import pokeForm from "../../assets/pokeform.png";
+import { ReactNode, useState } from 'react';
+import { useNavigate } from 'react-router';
+import Button from '../../common/buttons/Button/Button';
+import { ROUTES } from '../../utils/constants/routes';
+import { useLoginWithGoogle } from '../../utils/firebase/hooks/useLoginWithGoogle';
+import { SignUp } from './SignUp/SignUp';
+import { SignIn } from './SignIn/SignIn';
+import { GoogleButton } from '../../common/buttons/GoogleButton/GoogleButton';
+import { useAppDispatch } from '../../utils/contexts/store/store';
+import { sessionSlice } from '../../utils/contexts/store/session.slice';
+import styles from './Auth.module.scss';
+import pokeForm from '../../assets/pokeform.png';
 
 const AuthLayout = ({ children }: { children: ReactNode }) => (
   <div className={styles.auth}>{children}</div>
@@ -31,7 +31,7 @@ const Auth = () => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <div className={styles["card__img-wrapper"]}>
+        <div className={styles['card__img-wrapper']}>
           <img src={pokeForm} alt="pokemons" />
         </div>
         <AuthLayout>
@@ -39,7 +39,7 @@ const Auth = () => {
           <Button
             theme="blue"
             onClick={() => setSigninIn(!signinIn)}
-            children={signinIn ? "Sign Up" : "I already have an account"}
+            children={signinIn ? 'Sign Up' : 'I already have an account'}
           />
           <GoogleButton onClick={() => loginWithGoogle()} />
         </AuthLayout>

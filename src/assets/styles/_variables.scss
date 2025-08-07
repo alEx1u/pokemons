@@ -1,5 +1,5 @@
-@use "sass:math" as math;
-@use "sass:map";
+@use 'sass:math' as math;
+@use 'sass:map';
 
 $bg-color: #f3f4f6;
 $bg-color_dark: #111827;
@@ -13,9 +13,11 @@ $text-color-sm_dark: #9ca3af;
 $card-bg_light: #ffffff;
 $card-bg_dark: #1f2937;
 
-$card-shadow_light: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+$card-shadow_light:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
   0 2px 4px -2px rgba(0, 0, 0, 0.1);
-$card-shadow_dark: 0 4px 6px -1px rgba(255, 255, 255, 0.05),
+$card-shadow_dark:
+  0 4px 6px -1px rgba(255, 255, 255, 0.05),
   0 2px 4px -2px rgba(255, 255, 255, 0.05);
 
 $color-red-100: #fee2e2;

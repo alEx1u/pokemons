@@ -6,7 +6,7 @@ interface CloseButtonProps {
 
 export const CloseButton = ({ onClick }: CloseButtonProps) => {
   return (
-    <Button theme='red' onClick={onClick} square>
+    <Button theme="red" onClick={onClick} square>
       <span className={`${styles['close-btn__icon']}`}></span>
     </Button>
   );

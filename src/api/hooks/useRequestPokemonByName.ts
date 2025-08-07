@@ -1,25 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { requestPokemonByName } from '../requests/pokemon';
 
-
 interface UseRequestPokemonByNameProps {
-  name : Pokemon['name'];
+  name: Pokemon['name'];
 }
 
-export const useRequestPokemonByName = ({ name } : UseRequestPokemonByNameProps) => 
+export const useRequestPokemonByName = ({ name }: UseRequestPokemonByNameProps) =>
   useQuery({
     queryKey: ['pokemon', name],
-    queryFn: () => requestPokemonByName({ params: { name } })
-  })
-
+    queryFn: () => requestPokemonByName({ params: { name } }),
+  });
 
 // import { useRequestPokemonByName } from './useRequestPokemonByName';
 // import { useQuery, useQueries, UseQueryResult } from "@tanstack/react-query";
 // import { useState, useEffect } from "react";
 // import { requestPokemonByName } from '../requests/pokemon';
 // import { baseQuery } from '../requests/base';
-
-
 
 // type UsePokemonDataProps = {
 //   limit: number;
@@ -50,7 +46,6 @@ export const useRequestPokemonByName = ({ name } : UseRequestPokemonByNameProps)
 //     next: null,
 //     prev: null,
 //   });
-
 
 //   const pokemonQueries = useQueries({
 //     queries: pokemonNames.map((name) => ({

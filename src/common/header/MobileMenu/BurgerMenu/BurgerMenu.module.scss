@@ -1,0 +1,54 @@
+@use '../../../../assets/styles/variables' as *;
+
+.burger {
+  position: relative;
+  z-index: 100;
+  .pokeball-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    transition: $transition;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  &--open {
+    .pokeball {
+      transform: rotate(90deg) scale(1.2);
+    }
+  }
+}
+
+.pokeball {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(to bottom, #fff 50%, #e53e3e 50%);
+  border: 2px solid #222;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  .line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #222;
+    transform: translateY(-50%);
+  }
+
+  .circle {
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border: 2px solid #222;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,9 +1,9 @@
 @use '../../../../assets/styles/variables' as *;
 
 .buttons {
-    display: flex;
-    justify-content: end;
-    width: 100%;
-    gap: sp(2);
-    margin-top: sp(1.5);
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  gap: sp(1);
+  margin-top: sp(2);
 }

@@ -31,17 +31,40 @@ $ring-color: rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 0 $width $color;
 }
 
-$font: "Inter", sans-serif !default;
+$font: 'Inter', sans-serif !default;
 
 $font-sizes: (
-  title:        (1.25rem, 1.75rem, 600),
-  sub-title:    (1.125rem, 1.75rem, 500),
-  "title-regular": (1.125rem, 1.75rem, 400),
-  body:         (1rem, 1.5rem, 500),
-  "title-body": (1rem, 1.5rem, 600),
-  "sub-body":   (0.875rem, 1.25rem, 400)
+  title: (
+    1.25rem,
+    1.75rem,
+    600,
+  ),
+  sub-title: (
+    1.125rem,
+    1.75rem,
+    500,
+  ),
+  'title-regular': (
+    1.125rem,
+    1.75rem,
+    400,
+  ),
+  body: (
+    1rem,
+    1.5rem,
+    500,
+  ),
+  'title-body': (
+    1rem,
+    1.5rem,
+    600,
+  ),
+  'sub-body': (
+    0.875rem,
+    1.25rem,
+    400,
+  ),
 ) !default;
-
 
 @mixin font-variant($key) {
   @if map.has-key($font-sizes, $key) {

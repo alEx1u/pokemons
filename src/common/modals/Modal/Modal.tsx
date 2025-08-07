@@ -1,5 +1,5 @@
-import clsx from "clsx";
-import styles from "./Modal.module.scss";
+import clsx from 'clsx';
+import styles from './Modal.module.scss';
 
 export interface ModalProps {
   isShowing: boolean;
@@ -9,11 +9,9 @@ export interface ModalProps {
 
 export const Modal = ({ isShowing, onClose, children }: ModalProps) => (
   <div className={clsx({ [styles.modal_open]: isShowing })}>
-    {isShowing && (
-      <div className={styles.modal_overlay} aria-hidden onClick={onClose} />
-    )}
+    {isShowing && <div className={styles.modal_overlay} aria-hidden onClick={onClose} />}
     <div
-      className={clsx("card", styles.modal_container)}
+      className={clsx('card', styles.modal_container)}
       aria-modal
       aria-hidden
       tabIndex={-1}

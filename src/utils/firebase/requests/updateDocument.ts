@@ -1,5 +1,5 @@
-import { doc, updateDoc } from "firebase/firestore";
-import { Collection, db } from "../firebase";
+import { doc, updateDoc } from 'firebase/firestore';
+import { Collection, db } from '../firebase';
 
 export const updateDocument = async <T>(
   collection: Collection,
