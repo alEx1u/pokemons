@@ -2,7 +2,6 @@ import { PokemonShortCut } from '../../common/pokemon/PokemonShortCut/PokemonSho
 import { useAuthState } from '../../utils/firebase/hooks/useAuthState';
 import { useLogoutMutation } from '../../utils/firebase/hooks/useLogoutMutation';
 import { useNavigate } from 'react-router';
-import { ROUTES } from '../../utils/constants/routes';
 import Button from '../../common/buttons/Button/Button';
 import { CloseButton } from '../../common/buttons/CloseButton/CloseButton';
 import { useUpdateDocumentMutation } from '../../utils/firebase/hooks/useUpdateDocumentMutation';
@@ -21,7 +20,6 @@ export const ProfilePage = () => {
   const { mutate: logoutMutation, isPending: logoutMutationPending } = useLogoutMutation({
     onSuccess: () => {
       dispatch(sessionSlice.actions.logOut());
-      navigate(ROUTES.POKEMONS);
     },
   });
 

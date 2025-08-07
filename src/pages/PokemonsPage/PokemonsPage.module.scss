@@ -12,19 +12,30 @@
 }
 
 .pokemons {
-  @include flex-center;
-  flex-wrap: wrap;
-  gap: sp(5);
+  display: grid;
+  grid-template-columns: 250px;
+  justify-content: center;
+  padding-left: sp(15);
+  padding-right: sp(15);
+  gap: sp(5) sp(7);
   margin-top: sp(5);
   &__pokemon-item {
     border: 1px solid;
     border-radius: $rounded;
     text-align: center;
     transition: $transition;
-    width: 20vw;
+    width: 100%;
     &:hover {
       transform: scale(1.05);
       cursor: pointer;
     }
+  }
+
+  @include respond(sm) {
+    grid-template-columns: 250px 250px;
+  }
+
+  @include respond(lg) {
+    grid-template-columns: repeat(3, 250px);
   }
 }
