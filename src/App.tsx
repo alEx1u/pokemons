@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
-import Navbar from './common/header/Navbar';
 import PokemonsPage from './pages/PokemonsPage/PokemonsPage';
 import './assets/styles/global.scss';
 import { ROUTES } from './utils/constants/routes';
@@ -13,6 +12,7 @@ import { useAppDispatch, useAppSelector } from './utils/contexts/store/store';
 import { useEffect } from 'react';
 import { sessionSlice } from './utils/contexts/store/session.slice';
 import { PokeballLoader } from './common/loader/PokeballLoader';
+import { Navbar } from './common/header/Navbar';
 
 const AuthApp = () => {
   return (

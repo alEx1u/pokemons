@@ -2,10 +2,6 @@
 @use '../../assets/styles/mixins' as *;
 
 .navbar {
-  @include flex-between;
-  height: sp(10);
-  padding: sp(10);
-  box-shadow: var(--shadow-lg);
   &__links {
     @include flex-between;
     gap: sp(3);

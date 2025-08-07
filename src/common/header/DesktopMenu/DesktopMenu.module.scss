@@ -1,0 +1,9 @@
+@use '../../../assets/styles/variables' as *;
+@use '../../../assets/styles/mixins' as *;
+
+.desktop-menu_header {
+  @include flex-between;
+  height: sp(10);
+  padding: sp(10);
+  box-shadow: var(--shadow-lg);
+}
