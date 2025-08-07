@@ -1,17 +1,11 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 import styles from './Input.module.scss';
-interface InputProps extends React.ComponentPropsWithRef<"input"> {
+interface InputProps extends React.ComponentPropsWithRef<'input'> {
   isLoading?: boolean;
   error?: string;
 }
 
-export const Input = ({
-  id,
-  placeholder,
-  error,
-  ref,
-  ...props
-}: InputProps) => (
+export const Input = ({ id, placeholder, error, ref, ...props }: InputProps) => (
   <label htmlFor={id}>
     <div className={styles.placeholder}>{placeholder}</div>
     <input

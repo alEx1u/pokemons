@@ -1,21 +1,21 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
-import { ROUTES } from "../../../utils/constants/routes";
-import { useRequestloginWithEmailAndPassword } from "../../../utils/firebase/hooks/useRequestloginWithEmailAndPassword";
-import { useNavigate } from "react-router";
-import { FirebaseError } from "firebase/app";
-import Button from "../../../common/buttons/Button/Button";
-import { Input } from "../../../common/input/Input";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { ROUTES } from '../../../utils/constants/routes';
+import { useRequestloginWithEmailAndPassword } from '../../../utils/firebase/hooks/useRequestloginWithEmailAndPassword';
+import { useNavigate } from 'react-router';
+import { FirebaseError } from 'firebase/app';
+import Button from '../../../common/buttons/Button/Button';
+import { Input } from '../../../common/input/Input';
 import { useAppDispatch } from '../../../utils/contexts/store/store';
 import { sessionSlice } from '../../../utils/contexts/store/session.slice';
 import styles from '../Auth.module.scss';
 import clsx from 'clsx';
 
 const loginSchema = z.object({
-  email: z.string().email("Invalid email"),
-  password: z.string().min(6, "Minimum value is 6"),
+  email: z.string().email('Invalid email'),
+  password: z.string().min(6, 'Minimum value is 6'),
 });
 
 type FormType = z.infer<typeof loginSchema>;
@@ -32,7 +32,7 @@ export const SignIn = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormType>({
     resolver: zodResolver(loginSchema),
-    mode: "onBlur",
+    mode: 'onBlur',
   });
 
   const { mutate: loginWithEmailAndPasswordMutation, isPending: isLogging } =
@@ -44,17 +44,17 @@ export const SignIn = () => {
       onError: (error) => {
         if (error instanceof FirebaseError) {
           switch (error.code) {
-            case "auth/user-not-found":
-              setError("email", { message: "User not found" });
+            case 'auth/user-not-found':
+              setError('email', { message: 'User not found' });
               break;
-            case "auth/wrong-password":
-              setError("password", { message: "Wrong password" });
+            case 'auth/wrong-password':
+              setError('password', { message: 'Wrong password' });
               break;
-            case "auth/invalid-email":
-              setError("email", { message: "Invalid email" });
+            case 'auth/invalid-email':
+              setError('email', { message: 'Invalid email' });
               break;
             default:
-              setFireBaseError("Unexpected error. Try again.");
+              setFireBaseError('Unexpected error. Try again.');
           }
         }
       },
@@ -72,23 +72,21 @@ export const SignIn = () => {
       <form className={styles['auth__form']} onSubmit={handleSubmit(onSubmit)}>
         <Input
           className={clsx(styles.input, {
-            [styles['input--error']] : errors.email
-          } )}
-          {...register("email")}
+            [styles['input--error']]: errors.email,
+          })}
+          {...register('email')}
           placeholder="email"
         />
         {errors.email && <p className={styles.error}>{errors.email.message}</p>}
         <Input
           className={clsx(styles.input, {
-            [styles['input--error']] : errors.password
-          } )}
-          {...register("password")}
+            [styles['input--error']]: errors.password,
+          })}
+          {...register('password')}
           type="password"
           placeholder="password"
         />
-        {errors.password && (
-          <p className={styles.error}>{errors.password.message}</p>
-        )}
+        {errors.password && <p className={styles.error}>{errors.password.message}</p>}
         <Button
           style={{ marginTop: 15 }}
           type="submit"

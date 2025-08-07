@@ -1,29 +1,27 @@
-import { useNavigate, useParams } from "react-router";
-import { useRequestPokemonByName } from "../../api/hooks/useRequestPokemonByName";
-import Button from "../../common/buttons/Button/Button";
-import { useAuthState } from "../../utils/firebase/hooks/useAuthState";
-import { useUpdateDocumentMutation } from "../../utils/firebase/hooks/useUpdateDocumentMutation";
-import { CloseButton } from "../../common/buttons/CloseButton/CloseButton";
-import styles from "./PokemonPage.module.scss";
-import { Typography } from "../../common/typography/Typography";
-import { PokeballLoader } from "../../common/loader/PokeballLoader";
+import { useNavigate, useParams } from 'react-router';
+import { useRequestPokemonByName } from '../../api/hooks/useRequestPokemonByName';
+import Button from '../../common/buttons/Button/Button';
+import { useAuthState } from '../../utils/firebase/hooks/useAuthState';
+import { useUpdateDocumentMutation } from '../../utils/firebase/hooks/useUpdateDocumentMutation';
+import { CloseButton } from '../../common/buttons/CloseButton/CloseButton';
+import styles from './PokemonPage.module.scss';
+import { Typography } from '../../common/typography/Typography';
+import { PokeballLoader } from '../../common/loader/PokeballLoader';
 import clsx from 'clsx';
 
 const MAX_USER_POKEMONS = 6;
 
 const PokemonPage = () => {
   const navigate = useNavigate();
-  const { pokemonName } = useParams<Pokemon["name"]>();
+  const { pokemonName } = useParams<Pokemon['name']>();
   const { data, isLoading, error } = useRequestPokemonByName({
     name: pokemonName!,
   });
 
   const authState = useAuthState();
 
-  const {
-    mutate: updatePokemonMutataion,
-    isPending: updatePokemonMutataionPending,
-  } = useUpdateDocumentMutation();
+  const { mutate: updatePokemonMutataion, isPending: updatePokemonMutataionPending } =
+    useUpdateDocumentMutation();
 
   if (isLoading || !authState.data) return <PokeballLoader />;
 
@@ -44,8 +42,8 @@ const PokemonPage = () => {
       <CloseButton onClick={() => navigate(-1)} />
       <div className={clsx('card', styles['pokemon-card'])}>
         <Typography variant="title">{pokemon.name}</Typography>
-        <img src={pokemon.sprites.front_default || ""} alt="pokemon-img" />
-        <div className={styles["pokemon-card__stats"]}>
+        <img src={pokemon.sprites.front_default || ''} alt="pokemon-img" />
+        <div className={styles['pokemon-card__stats']}>
           <ul>
             {pokemon.stats.map((stat) => {
               return (
@@ -69,7 +67,7 @@ const PokemonPage = () => {
           children="ADD To Team"
           onClick={() =>
             updatePokemonMutataion({
-              collection: "users",
+              collection: 'users',
               data: {
                 pokemons: [
                   ...user.pokemons,

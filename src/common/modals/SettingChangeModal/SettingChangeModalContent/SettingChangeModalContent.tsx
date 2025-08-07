@@ -1,18 +1,18 @@
-import { useForm } from "react-hook-form";
-import { useAuthState } from "../../../../utils/firebase/hooks/useAuthState";
-import { useUpdateDocumentMutation } from "../../../../utils/firebase/hooks/useUpdateDocumentMutation";
-import { ModalProps } from "../../Modal/Modal";
-import { Typography } from "../../../typography/Typography";
-import { Input } from "../../../input/Input";
-import { z } from "zod";
-import Button from "../../../buttons/Button/Button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import styles from "./SettingChangeModalContent.module.scss";
+import { useForm } from 'react-hook-form';
+import { useAuthState } from '../../../../utils/firebase/hooks/useAuthState';
+import { useUpdateDocumentMutation } from '../../../../utils/firebase/hooks/useUpdateDocumentMutation';
+import { ModalProps } from '../../Modal/Modal';
+import { Typography } from '../../../typography/Typography';
+import { Input } from '../../../input/Input';
+import { z } from 'zod';
+import Button from '../../../buttons/Button/Button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import styles from './SettingChangeModalContent.module.scss';
 import { PokeballLoader } from '../../../loader/PokeballLoader';
 const settingSchemas = {
-  displayName: z.string().min(3, "Name should be at least 3 characters"),
-  email: z.string().email("Inalid Email"),
-  city: z.string().min(2, "Real city"),
+  name: z.string().min(3, 'Name should be at least 3 characters'),
+  email: z.string().email('Inalid Email'),
+  city: z.string().min(2, 'Real city'),
 };
 
 export type SettingModalItem = {
@@ -20,14 +20,11 @@ export type SettingModalItem = {
   value: string;
 };
 
-interface SettingChangeModalContentProps extends Pick<ModalProps, "onClose"> {
+interface SettingChangeModalContentProps extends Pick<ModalProps, 'onClose'> {
   setting: SettingModalItem;
 }
 
-export const SettingChangeModalContent = ({
-  setting,
-  onClose,
-}: SettingChangeModalContentProps) => {
+export const SettingChangeModalContent = ({ setting, onClose }: SettingChangeModalContentProps) => {
   const authState = useAuthState();
   const updateDocumentMutation = useUpdateDocumentMutation({
     onSuccess: () => {
@@ -47,13 +44,13 @@ export const SettingChangeModalContent = ({
         [setting.type]: settingSchemas[setting.type],
       })
     ),
-    mode: "onBlur",
+    mode: 'onBlur',
   });
 
   const isLoading = isSubmitting || updateDocumentMutation.isPending;
   const currentValue = watch(setting.type);
 
-  if (!authState.data) return <PokeballLoader/>;
+  if (!authState.data) return <PokeballLoader />;
 
   const user = authState.data;
 
@@ -65,13 +62,13 @@ export const SettingChangeModalContent = ({
           return;
         }
         updateDocumentMutation.mutate({
-          collection: "users",
+          collection: 'users',
           data: { [setting.type]: currentValue },
           id: user.uid!,
         });
       })}
     >
-      <Typography variant="sub-title">Change your {setting.type}</Typography>
+      <Typography variant="title-regular">Change your {setting.type}</Typography>
       <Input
         {...register(setting.type)}
         disabled={isLoading}
@@ -79,11 +76,7 @@ export const SettingChangeModalContent = ({
         defaultValue={setting.value}
       />
       <div className={styles.buttons}>
-        <Button
-          theme="blue"
-          type="submit"
-          disabled={isLoading || currentValue === setting.value}
-        >
+        <Button theme="blue" type="submit" disabled={isLoading || currentValue === setting.value}>
           CHANGE
         </Button>
         <Button theme="red" onClick={onClose} disabled={isLoading}>

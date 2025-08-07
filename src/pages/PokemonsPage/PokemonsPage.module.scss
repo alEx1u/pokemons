@@ -1,5 +1,5 @@
-@use "../../assets/styles/variables" as *;
-@use "../../assets/styles/mixins" as *;
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
 
 .wrong {
   margin-top: 40vh;
@@ -20,11 +20,11 @@
     border: 1px solid;
     border-radius: $rounded;
     text-align: center;
-    padding: sp(3);
     transition: $transition;
-    width: 25vw;
+    width: 20vw;
     &:hover {
-      box-shadow: var(--shadow-xl);
+      transform: scale(1.05);
+      cursor: pointer;
     }
   }
 }

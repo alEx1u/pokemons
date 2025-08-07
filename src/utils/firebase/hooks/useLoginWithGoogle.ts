@@ -1,12 +1,10 @@
-import { useMutation, UseMutationOptions } from "@tanstack/react-query";
-import { loginWithGoogle } from "../requests/loginWithGoogle";
-import { UserCredential } from "firebase/auth";
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { loginWithGoogle } from '../requests/loginWithGoogle';
+import { UserCredential } from 'firebase/auth';
 
-export const useLoginWithGoogle = (
-  options?: UseMutationOptions<UserCredential, Error>
-) =>
+export const useLoginWithGoogle = (options?: UseMutationOptions<UserCredential, Error>) =>
   useMutation({
-    mutationKey: ["loginWithGoogle"],
+    mutationKey: ['loginWithGoogle'],
     mutationFn: () => loginWithGoogle(),
     ...(options ?? {}),
   });

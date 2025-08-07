@@ -1,5 +1,5 @@
-import { useMutation, UseMutationOptions } from "@tanstack/react-query";
-import { registerWithEmailAndPasswor } from "../requests/registerWithEmailAndPassword";
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { registerWithEmailAndPasswor } from '../requests/registerWithEmailAndPassword';
 
 interface RegisterPayload {
   user: User & { email: string };
@@ -12,9 +12,9 @@ export const useRequestRegisterWithEmailAndPasswor = (
   options?: UseMutationOptions<RegisterResponse, Error, RegisterPayload>
 ) => {
   return useMutation({
-    mutationKey: ["loginWithEmailAndPassword"],
+    mutationKey: ['loginWithEmailAndPassword'],
     mutationFn: async ({ user, password }) =>
-      registerWithEmailAndPasswor({user, password, city: user.city}),
+      registerWithEmailAndPasswor({ user, password, city: user.city }),
     ...(options ?? {}),
   });
 };

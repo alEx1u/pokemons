@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const usePromise = <T>() => {
   const [isLoading, setIsLoading] = useState<boolean>(true);

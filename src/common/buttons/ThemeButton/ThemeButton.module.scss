@@ -1,5 +1,5 @@
-@use "../../../assets/styles/variables" as *;
-@use "../../../assets/styles/mixins" as *;
+@use '../../../assets/styles/variables' as *;
+@use '../../../assets/styles/mixins' as *;
 
 .pokeball-button {
   position: fixed;
@@ -24,7 +24,7 @@
   transition: $transition;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 0;
@@ -35,7 +35,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;

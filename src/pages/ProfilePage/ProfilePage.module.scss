@@ -2,24 +2,24 @@
 @use '../../assets/styles/mixins' as *;
 
 .pokemons-team__wrapper {
-    @include flex-center;
-    flex-direction: column;
-    gap: sp(4);
+  @include flex-center;
+  flex-direction: column;
+  gap: sp(4);
 }
 
 .pokemons-team {
+  display: flex;
+  flex-direction: column;
+  gap: sp(3);
+  margin-bottom: sp(2);
+  &__item {
     display: flex;
-    flex-direction: column;
-    gap: sp(3);
-    margin-bottom: sp(2);
-    &__item {
-        display: flex;
-        gap: sp(5);
-        align-items: center;
-    }
+    gap: sp(5);
+    align-items: center;
+  }
 }
 
 .logout {
-    padding-top: sp(4);
-    @include flex-center
+  padding-top: sp(4);
+  @include flex-center;
 }

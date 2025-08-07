@@ -1,9 +1,6 @@
 import clsx from 'clsx';
-import { sessionSlice } from "../../../utils/contexts/store/session.slice";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../../../utils/contexts/store/store";
+import { sessionSlice } from '../../../utils/contexts/store/session.slice';
+import { useAppDispatch, useAppSelector } from '../../../utils/contexts/store/store';
 import styles from './ThemeButton.module.scss';
 
 export const ThemeButton = () => {
@@ -12,11 +9,11 @@ export const ThemeButton = () => {
 
   return (
     <button
-        onClick={() => dispatch(sessionSlice.actions.switchTheme())}
-        className={styles['pokeball-button']}
-        aria-label='Switch a theme'
+      onClick={() => dispatch(sessionSlice.actions.switchTheme())}
+      className={styles['pokeball-button']}
+      aria-label="Switch a theme"
     >
-        <div className={clsx(styles.pokeball, styles[`pokeball--${theme}`])}></div>
+      <div className={clsx(styles.pokeball, styles[`pokeball--${theme}`])}></div>
     </button>
   );
 };

@@ -1,19 +1,19 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIRESTORE_API_KEY,
-  authDomain: import.meta.env.VITE_FIRESTORE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIRESTORE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIRESTORE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIRESTORE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIRESTORE_APP_ID,
-}
+  apiKey: 'AIzaSyD7Gq4VQnTtUF7yg1PUFUk-g83v6h32g88',
+  authDomain: 'pokemon-5fddd.firebaseapp.com',
+  projectId: 'pokemon-5fddd',
+  storageBucket: 'pokemon-5fddd.firebasestorage.app',
+  messagingSenderId: '293257745515',
+  appId: '1:293257745515:web:5bb2241d9808c6420d4d2e',
+};
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();
-export type Collection = "pokemons" | "users";
+export type Collection = 'pokemons' | 'users';

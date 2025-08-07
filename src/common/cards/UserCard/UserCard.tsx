@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router";
-import styles from "./UserCard.module.scss";
-import userNoImg from "../../../assets/userNoImg.jpg";
+import { useNavigate } from 'react-router';
+import styles from './UserCard.module.scss';
+import userNoImg from '../../../assets/userNoImg.jpg';
 
 interface UserCardProps {
   user: User;
@@ -36,12 +36,11 @@ export const UserCard: React.FC<UserCardProps> = ({ user }) => {
                   role="button"
                   tabIndex={0}
                   onKeyDown={(event) => {
-                    if (event.key === "Enter")
-                      return navigate(`/pokemon/${pokemon.name}`);
+                    if (event.key === 'Enter') return navigate(`/pokemon/${pokemon.name}`);
                   }}
                   onClick={() => navigate(`/pokemon/${pokemon.name}`)}
                 >
-                  <img src={pokemon.image || ""} alt={pokemon.name} />{" "}
+                  <img src={pokemon.image || ''} alt={pokemon.name} />{' '}
                 </div>
               </div>
             ))}

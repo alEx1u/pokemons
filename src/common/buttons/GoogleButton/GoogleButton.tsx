@@ -1,4 +1,4 @@
-import { GoogleIcon } from "../../icons/GoogleIcon";
+import { GoogleIcon } from '../../icons/GoogleIcon';
 import styles from './GoogleButton.module.scss';
 interface GoogleButtonProps {
   onClick: () => void;
@@ -7,17 +7,9 @@ interface GoogleButtonProps {
   className?: string;
 }
 
-export const GoogleButton = ({
-  onClick,
-  loading = false,
-  label = "",
-}: GoogleButtonProps) => (
-  <button
-    onClick={onClick}
-    disabled={loading}
-    className={styles['google-button']}
-  >
+export const GoogleButton = ({ onClick, loading = false, label = '' }: GoogleButtonProps) => (
+  <button onClick={onClick} disabled={loading} className={styles['google-button']}>
     <GoogleIcon />
-    {loading ? "Loading..." : label}
+    {loading ? 'Loading...' : label}
   </button>
 );

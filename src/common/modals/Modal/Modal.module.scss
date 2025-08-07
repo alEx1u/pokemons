@@ -1,7 +1,6 @@
 @use '../../../assets/styles/mixins' as *;
 @use '../../../assets/styles/variables' as *;
 
-
 .modal_overlay {
   position: fixed;
   top: 0;
@@ -18,7 +17,6 @@
   opacity: 0.125;
 }
 
-
 .modal_container {
   position: fixed;
   bottom: -100%;
@@ -29,22 +27,21 @@
   overflow: hidden;
   overflow-y: auto;
   border-top-left-radius: $rounded-2xl;
-  border-top-right-radius: $rounded-2xl; 
+  border-top-right-radius: $rounded-2xl;
   outline: none;
   transition: bottom 0.3s;
 }
 
 @include respond(md) {
   .modal_container {
-    width: 24rem; 
-    border-radius: $rounded-2xl; 
+    width: 24rem;
+    border-radius: $rounded-2xl;
     padding: sp(3) sp(10);
     transition: none;
-    bottom:-100%;
+    bottom: -100%;
   }
 }
 
 .modal_open .modal_container {
   bottom: 0;
 }
-
