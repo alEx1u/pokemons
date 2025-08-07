@@ -9,7 +9,8 @@
 
 .img-wrapper {
     position: relative;
-    width: 20vw;
+    width: sp(45);
+    margin-bottom: sp(10);
     @include flex-center;
     img {
         border-radius: 50%;

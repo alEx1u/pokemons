@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { Typography } from "../../common/typography/Typography";
 import styles from "./PokemonsPage.module.scss";
 import { PokeballLoader } from "../../common/loader/PokeballLoader";
+import clsx from 'clsx';
 const PokemonsPage = () => {
   const limit = 50;
   const { ref, inView } = useInView();
@@ -47,7 +48,7 @@ const PokemonsPage = () => {
         {pokemons.map((pokemon) => (
           <div
             key={pokemon.name}
-            className={styles["pokemons__pokemon-item"]}
+            className={clsx('card',styles["pokemons__pokemon-item"])}
             onClick={() => navigate(`/pokemon/${pokemon.name}`)}
             role="button"
             tabIndex={0}

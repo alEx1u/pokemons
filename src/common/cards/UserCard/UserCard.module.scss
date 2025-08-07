@@ -53,3 +53,8 @@
     }
   }
 }
+
+
+:global(body.theme--dark) .user-card__pokemons {
+  background-color: #2c1e1e;
+}

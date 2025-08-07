@@ -23,3 +23,7 @@
 .span {
   color: $color-red-400;
 }
+
+:global(body.theme--dark) .input {
+  background-color: $bg-color;
+}

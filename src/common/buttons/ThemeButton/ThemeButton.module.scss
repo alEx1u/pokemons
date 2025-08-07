@@ -49,11 +49,11 @@
   }
 
   &--light {
-    background: linear-gradient(to bottom, red 50%, white 50%);
+    background: $pokeball-color_light;
   }
 
   &--dark {
-    background: linear-gradient(to bottom, #333 50%, #999 50%);
+    background: $pokeball-color_dark;
   }
 
   &:active,

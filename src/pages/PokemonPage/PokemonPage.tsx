@@ -7,6 +7,7 @@ import { CloseButton } from "../../common/buttons/CloseButton/CloseButton";
 import styles from "./PokemonPage.module.scss";
 import { Typography } from "../../common/typography/Typography";
 import { PokeballLoader } from "../../common/loader/PokeballLoader";
+import clsx from 'clsx';
 
 const MAX_USER_POKEMONS = 6;
 
@@ -41,7 +42,7 @@ const PokemonPage = () => {
   return (
     <div className={styles.container}>
       <CloseButton onClick={() => navigate(-1)} />
-      <div className={styles["pokemon-card"]}>
+      <div className={clsx('card', styles['pokemon-card'])}>
         <Typography variant="title">{pokemon.name}</Typography>
         <img src={pokemon.sprites.front_default || ""} alt="pokemon-img" />
         <div className={styles["pokemon-card__stats"]}>
