@@ -1,16 +1,15 @@
 @use "../../../assets/styles/variables" as *;
 @use "../../../assets/styles/mixins" as *;
 
-
 .icon-button {
   @include flex-center;
   border-radius: $rounded-2xl;
   background-color: inherit;
   padding: sp(1);
-  box-shadow: $shadow-sm;
+  box-shadow: var(--shadow-sm);
   transition: $transition;
   & > svg {
-    width: sp(11); 
+    width: sp(11);
     height: sp(11);
   }
   &:disabled {

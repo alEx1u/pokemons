@@ -1,31 +1,30 @@
-@use '../../assets/styles/variables' as *;
-@use '../../assets/styles/mixins' as *;
-
+@use "../../assets/styles/variables" as *;
+@use "../../assets/styles/mixins" as *;
 
 .wrong {
-    margin-top: 40vh;
-    text-align: center;
+  margin-top: 40vh;
+  text-align: center;
 }
 
 .title {
-    text-align: center;
-    margin-top: sp(10);
+  text-align: center;
+  margin-top: sp(10);
 }
 
 .pokemons {
-    @include flex-center;
-    flex-wrap: wrap;
-    gap: sp(5);
-    margin-top: sp(5);
-    &__pokemon-item {
-        border: 1px solid;
-        border-radius: $rounded;
-        text-align: center;
-        padding: sp(3);
-        transition: $transition;
-        width: 25vw;
-        &:hover {
-            box-shadow: $shadow-xl;
-        }
+  @include flex-center;
+  flex-wrap: wrap;
+  gap: sp(5);
+  margin-top: sp(5);
+  &__pokemon-item {
+    border: 1px solid;
+    border-radius: $rounded;
+    text-align: center;
+    padding: sp(3);
+    transition: $transition;
+    width: 25vw;
+    &:hover {
+      box-shadow: var(--shadow-xl);
     }
+  }
 }

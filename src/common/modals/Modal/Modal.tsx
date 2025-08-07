@@ -13,7 +13,7 @@ export const Modal = ({ isShowing, onClose, children }: ModalProps) => (
       <div className={styles.modal_overlay} aria-hidden onClick={onClose} />
     )}
     <div
-      className={styles.modal_container}
+      className={clsx("card", styles.modal_container)}
       aria-modal
       aria-hidden
       tabIndex={-1}

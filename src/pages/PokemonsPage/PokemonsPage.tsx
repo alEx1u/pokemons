@@ -4,8 +4,9 @@ import { baseQuery } from "../../api/requests/base";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Typography } from "../../common/typography/Typography";
-import styles from './PokemonsPage.module.scss';
-import { PokeballLoader } from '../../common/loader/PokeballLoader';
+import styles from "./PokemonsPage.module.scss";
+import { PokeballLoader } from "../../common/loader/PokeballLoader";
+import clsx from 'clsx';
 const PokemonsPage = () => {
   const limit = 50;
   const { ref, inView } = useInView();
@@ -30,9 +31,8 @@ const PokemonsPage = () => {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  if (isFetching || !data) return <PokeballLoader/>;
-  if (error || !data.pages)
-    return <div className={styles.wrong}>Ошибка</div>;
+  if (isFetching || !data) return <PokeballLoader />;
+  if (error || !data.pages) return <div className={styles.wrong}>Ошибка</div>;
 
   const pokemons = data.pages.reduce(
     (pokemons: NamedAPIResource[], { data }) => [...pokemons, ...data.results],
@@ -48,7 +48,7 @@ const PokemonsPage = () => {
         {pokemons.map((pokemon) => (
           <div
             key={pokemon.name}
-            className={styles['pokemons__pokemon-item']}
+            className={clsx('card',styles["pokemons__pokemon-item"])}
             onClick={() => navigate(`/pokemon/${pokemon.name}`)}
             role="button"
             tabIndex={0}

@@ -13,6 +13,11 @@
   opacity: 0.2;
 }
 
+:global(body.theme--dark) .modal_overlay {
+  background-color: white;
+  opacity: 0.125;
+}
+
 
 .modal_container {
   position: fixed;
@@ -21,13 +26,10 @@
   right: 0;
   z-index: 1050;
   margin: auto;
-  width: 99%;
   overflow: hidden;
   overflow-y: auto;
   border-top-left-radius: $rounded-2xl;
-  border-top-right-radius: $rounded-2xl;
-  background-color: white;
-  padding: sp(6) sp(5); 
+  border-top-right-radius: $rounded-2xl; 
   outline: none;
   transition: bottom 0.3s;
 }
@@ -36,9 +38,9 @@
   .modal_container {
     width: 24rem; 
     border-radius: $rounded-2xl; 
-    padding: 0 sp(10);
+    padding: sp(3) sp(10);
     transition: none;
-    bottom: 50%;
+    bottom:-100%;
   }
 }
 

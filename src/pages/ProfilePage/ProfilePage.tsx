@@ -10,9 +10,9 @@ import { Typography } from "../../common/typography/Typography";
 import { UserCard } from "../../common/cards/UserCard/UserCard";
 import { useAppDispatch } from "../../utils/contexts/store/store";
 import { sessionSlice } from "../../utils/contexts/store/session.slice";
-import styles from './ProfilePage.module.scss';
-import clsx from 'clsx';
-import { PokeballLoader } from '../../common/loader/PokeballLoader';
+import styles from "./ProfilePage.module.scss";
+import clsx from "clsx";
+import { PokeballLoader } from "../../common/loader/PokeballLoader";
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ export const ProfilePage = () => {
 
   const { mutate: deletePokemon } = useUpdateDocumentMutation();
 
-  if (!authState.data) return <PokeballLoader/>;
+  if (!authState.data) return <PokeballLoader />;
 
   const user = authState.data;
 
@@ -43,13 +43,13 @@ export const ProfilePage = () => {
   return (
     <div className="page">
       <UserCard user={user} />
-      <div className={clsx('card', styles['pokemons-team__wrapper'])}>
+      <div className={clsx("card", styles["pokemons-team__wrapper"])}>
         <Typography variant="title-regular">
           Ваша команда: {user.pokemons?.length}
         </Typography>
-        <div className={styles['pokemons-team']}>
+        <div className={styles["pokemons-team"]}>
           {user.pokemons?.map((teamMember) => (
-            <div className={styles['pokemons-team__item']} key={teamMember.id}>
+            <div className={styles["pokemons-team__item"]} key={teamMember.id}>
               <PokemonShortCut
                 name={teamMember.name}
                 onClick={() => navigate(`/pokemon/${teamMember.name}`)}

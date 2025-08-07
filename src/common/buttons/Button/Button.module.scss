@@ -1,34 +1,34 @@
-@use '../../../assets/styles/variables' as *;
-@use '../../../assets/styles/mixins' as *;
+@use "../../../assets/styles/variables" as *;
+@use "../../../assets/styles/mixins" as *;
 
 .button {
-    width: sp(50);
-    color: #FFFBEB;
-    padding: sp(2) sp(1);
-    border-radius: $rounded-xl;
-    box-shadow: $shadow-md;
+  width: sp(50);
+  color: #fffbeb;
+  padding: sp(2) sp(1);
+  border-radius: $rounded-xl;
+  box-shadow: var(--shadow-md);
+  &:hover {
+    box-shadow: var(--shadow-lg);
+  }
+  transition: $transition;
+  &--red {
+    background-color: $color-red-400;
     &:hover {
-        box-shadow: $shadow-lg;
-    };
-    transition: $transition;
-    &--red {
-        background-color: $color-red-400;
-        &:hover {
-            background-color: $color-red-500;
-        };
-    };
-    &--blue {
-        background-color: $color-teal-400;
-        &:hover {
-            background-color: $color-teal-500;
-        }
-    };
-    &--square {
-        width: sp(10);
-        height: sp(10);
-        @include flex-center;
-        &:active {
-            transform: scale(0.95)
-        }
-    };
-};
+      background-color: $color-red-500;
+    }
+  }
+  &--blue {
+    background-color: $color-teal-400;
+    &:hover {
+      background-color: $color-teal-500;
+    }
+  }
+  &--square {
+    width: sp(10);
+    height: sp(10);
+    @include flex-center;
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
