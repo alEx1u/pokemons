@@ -3,12 +3,18 @@
 
 .pokemon-shortcut {
   height: sp(20);
-  width: sp(80);
-  @include flex-between;
+  width: sp(90);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  justify-content: center;
   padding: sp(1) sp(3);
   border-radius: $rounded-2xl;
   transition: $transition;
   border: 1px solid $color-red-400;
+  .icon {
+    height: sp(20);
+  }
   &:hover {
     background-color: $color-red-400;
     color: white;

@@ -7,21 +7,70 @@
   &--title {
     @include font-variant(title);
     text-transform: capitalize;
+
+    @include respond(md) {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    @include respond(lg) {
+      font-size: 1.75rem;
+      line-height: 2.25rem;
+    }
   }
+
   &--sub-title {
     @include font-variant(sub-title);
     text-transform: capitalize;
+
+    @include respond(md) {
+      font-size: 1.25rem;
+    }
+    @include respond(lg) {
+      font-size: 1.375rem;
+    }
   }
+
   &--title-regular {
     @include font-variant(title-regular);
+
+    @include respond(md) {
+      font-size: 1.25rem;
+    }
+    @include respond(lg) {
+      font-size: 1.375rem;
+    }
   }
+
   &--body {
     @include font-variant(body);
+
+    @include respond(md) {
+      font-size: 1.125rem;
+    }
+    @include respond(lg) {
+      font-size: 1.25rem;
+    }
   }
+
   &--title-body {
     @include font-variant(title-body);
+
+    @include respond(md) {
+      font-size: 1.125rem;
+    }
+    @include respond(lg) {
+      font-size: 1.25rem;
+    }
   }
+
   &--sub-body {
     @include font-variant(sub-body);
+
+    @include respond(md) {
+      font-size: 1rem;
+    }
+    @include respond(lg) {
+      font-size: 1.125rem;
+    }
   }
 }

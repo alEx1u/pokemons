@@ -14,14 +14,18 @@
 }
 
 .pokemon-card {
-  padding: sp(10);
+  padding: sp(7.5);
   margin: sp(4);
   border: 1px solid;
   border-radius: $rounded-4xl;
   @include flex-center;
   flex-direction: column;
-  height: sp(120);
-  width: sp(90);
+  height: sp(100);
+  @include respond(md) {
+    height: sp(120);
+    width: sp(90);
+    padding: sp(10);
+  }
   img {
     width: sp(50);
   }
