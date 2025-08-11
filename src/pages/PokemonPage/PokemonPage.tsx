@@ -8,6 +8,8 @@ import styles from './PokemonPage.module.scss';
 import { Typography } from '../../common/typography/Typography';
 import { PokeballLoader } from '../../common/loader/PokeballLoader';
 import clsx from 'clsx';
+import { PokemonEvolutionChain } from '../../common/pokemon/PokemonEvolutionChain/PokemonEvolutionChain';
+import { useRequestSpecies } from '../../api/hooks/useRequestSpecies';
 
 const MAX_USER_POKEMONS = 6;
 
@@ -20,10 +22,14 @@ const PokemonPage = () => {
 
   const authState = useAuthState();
 
+  const { data: species, isLoading: speciesLoading } = useRequestSpecies({
+    id: data?.data.id ?? 0,
+  });
+
   const { mutate: updatePokemonMutataion, isPending: updatePokemonMutataionPending } =
     useUpdateDocumentMutation();
 
-  if (isLoading || !authState.data) return <PokeballLoader />;
+  if (isLoading || !authState.data || speciesLoading) return <PokeballLoader />;
 
   if (error || !data) {
     return <div className={styles.wrong}>Ошибка загрузки данных</div>;
@@ -81,6 +87,17 @@ const PokemonPage = () => {
               id: user.uid!,
             })
           }
+        />
+      )}
+      {species?.data.evolution_chain.url && (
+        <PokemonEvolutionChain
+          chainId={
+            species.data.evolution_chain.url.replace(
+              'https://pokeapi.co/api/v2/evolution-chain/',
+              ''
+            )[0]
+          }
+          name={pokemon.name}
         />
       )}
     </div>

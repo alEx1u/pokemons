@@ -13,9 +13,16 @@
   gap: sp(3);
   margin-bottom: sp(2);
   &__item {
+    width: sp(80);
     display: flex;
     gap: sp(5);
     align-items: center;
+    @include respond(xs) {
+      width: sp(100);
+    }
+    @include respond(md) {
+      width: 100%;
+    }
   }
 }
 

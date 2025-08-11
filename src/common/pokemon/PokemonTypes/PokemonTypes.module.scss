@@ -1,0 +1,163 @@
+@use '../../../assets/styles/variables' as *;
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: sp(2);
+}
+
+.type {
+  border-radius: $rounded-lg;
+  background-color: inherit;
+  padding: sp(0.5) sp(2);
+}
+
+.grass {
+  border: 1px solid #15803d;
+  color: #15803d;
+}
+
+:global(body.theme--dark) .grass {
+  border-color: #22c55e;
+  color: #22c55e;
+}
+
+.poison {
+  border: 1px solid #7e22ce;
+  color: #7e22ce;
+}
+
+:global(body.theme--dark) .poison {
+  border-color: #a855f7;
+  color: #a855f7;
+}
+
+.fire {
+  border: 1px solid #992907;
+  color: #992907;
+}
+
+:global(body.theme--dark) .fire {
+  border-color: #992907;
+  color: #992907;
+}
+
+.flying {
+  border: 1px solid #0284c7;
+  color: #0284c7;
+}
+
+:global(body.theme--dark) .flying {
+  border-color: #0ea5e9;
+  color: #0ea5e9;
+}
+
+.water {
+  border: 1px solid #60a5fa;
+  color: #60a5fa;
+}
+
+.electric {
+  border: 1px solid #eab308;
+  color: #eab308;
+}
+
+.ground {
+  border: 1px solid #a16207;
+  color: #a16207;
+}
+
+:global(body.theme--dark) .ground {
+  border-color: #eab308;
+  color: #eab308;
+}
+
+.dark {
+  border: 1px solid #475569;
+  color: #475569;
+}
+
+:global(body.theme--dark) .dark {
+  border-color: #cbd5e1;
+  color: #cbd5e1;
+}
+
+.ice {
+  border: 1px solid #0891b2;
+  color: #0891b2;
+}
+
+:global(body.theme--dark) .ice {
+  border-color: #06b6d4;
+  color: #06b6d4;
+}
+
+.dragon {
+  border: 1px solid #0891b2;
+  color: #0891b2;
+}
+
+:global(body.theme--dark) .dragon {
+  border-color: #06b6d4;
+  color: #06b6d4;
+}
+
+.fairy {
+  border: 1px solid #9d174d;
+  color: #9d174d;
+}
+
+:global(body.theme--dark) .fairy {
+  border-color: #ec4899;
+  color: #ec4899;
+}
+
+.psychic {
+  border: 1px solid #6d28d9;
+  color: #6d28d9;
+}
+
+:global(body.theme--dark) .psychic {
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+}
+
+.bug {
+  border: 1px solid #4d7c0f;
+  color: #4d7c0f;
+}
+
+:global(body.theme--dark) .bug {
+  border-color: #84cc16;
+  color: #84cc16;
+}
+
+.normal {
+  border: 1px solid #525252;
+  color: #525252;
+}
+
+:global(body.theme--dark) .normal {
+  border-color: #d4d4d4;
+  color: #d4d4d4;
+}
+
+.fighting {
+  border: 1px solid #b91c1c;
+  color: #b91c1c;
+}
+
+:global(body.theme--dark) .fighting {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.rock {
+  border: 1px solid #374151;
+  color: #374151;
+}
+
+:global(body.theme--dark) .rock {
+  border-color: #d1d5db;
+  color: #d1d5db;
+}

@@ -5,12 +5,27 @@
   margin-bottom: sp(1);
   font-weight: 400;
 }
-.input {
+input {
   width: 100%;
   border-radius: $rounded;
   padding: sp(3);
   box-shadow: var(--shadow-sm);
-  background-color: #f5f5f5;
+  background-color: $bg-color;
+  color: $text-color;
+
+  &:focus {
+    outline: none;
+    @include ring(sp(2));
+  }
+  &--error {
+    background-color: $color-red-100;
+    @include ring(sp(1) $color-red-400);
+  }
+}
+
+:global(body.theme--dark) input {
+  background-color: $bg-color_dark;
+  color: $text-color_dark;
   &:focus {
     outline: none;
     @include ring(sp(2));
@@ -22,8 +37,4 @@
 }
 .span {
   color: $color-red-400;
-}
-
-:global(body.theme--dark) .input {
-  background-color: $bg-color;
 }

@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router';
 import { useRequestPokemonByName } from '../../../api/hooks/useRequestPokemonByName';
 import { PokeballLoader } from '../../loader/PokeballLoader';
 import styles from './PokemonShortCut.module.scss';
+import { PokemonTypes } from '../PokemonTypes/PokemonTypes';
+import { Typography } from '../../typography/Typography';
 
 interface PokemonShortCutProps {
   name: Pokemon['name'];
-  onClick: () => void;
 }
 
-export const PokemonShortCut = ({ name, onClick }: PokemonShortCutProps) => {
+export const PokemonShortCut = ({ name }: PokemonShortCutProps) => {
   const { data, isLoading } = useRequestPokemonByName({ name });
+  const navigate = useNavigate();
 
   const isPokemon = !!data && !isLoading;
 
@@ -22,13 +25,14 @@ export const PokemonShortCut = ({ name, onClick }: PokemonShortCutProps) => {
       role="button"
       onKeyDown={(event) => {
         if (event.key == 'Enter') {
-          onClick();
+          navigate(`/pokemon/${pokemon.name}`);
         }
       }}
-      onClick={() => onClick()}
+      onClick={() => navigate(`/pokemon/${pokemon.name}`)}
     >
-      <img src={pokemon.sprites.front_default ?? ''} alt="pokemon img" />
-      <p>{pokemon.name}</p>
+      <img src={pokemon.sprites.front_default ?? ''} alt="pokemon img" className={styles.icon} />
+      <Typography variant="sub-body">{pokemon.name}</Typography>
+      <PokemonTypes types={pokemon.types} />
     </div>
   );
 };

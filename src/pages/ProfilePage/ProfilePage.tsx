@@ -1,7 +1,6 @@
 import { PokemonShortCut } from '../../common/pokemon/PokemonShortCut/PokemonShortCut';
 import { useAuthState } from '../../utils/firebase/hooks/useAuthState';
 import { useLogoutMutation } from '../../utils/firebase/hooks/useLogoutMutation';
-import { useNavigate } from 'react-router';
 import Button from '../../common/buttons/Button/Button';
 import { CloseButton } from '../../common/buttons/CloseButton/CloseButton';
 import { useUpdateDocumentMutation } from '../../utils/firebase/hooks/useUpdateDocumentMutation';
@@ -15,7 +14,6 @@ import { PokeballLoader } from '../../common/loader/PokeballLoader';
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const authState = useAuthState();
   const { mutate: logoutMutation, isPending: logoutMutationPending } = useLogoutMutation({
     onSuccess: () => {
@@ -43,11 +41,7 @@ export const ProfilePage = () => {
         <div className={styles['pokemons-team']}>
           {user.pokemons?.map((teamMember) => (
             <div className={styles['pokemons-team__item']} key={teamMember.id}>
-              <PokemonShortCut
-                name={teamMember.name}
-                onClick={() => navigate(`/pokemon/${teamMember.name}`)}
-                key={teamMember.name}
-              />
+              <PokemonShortCut name={teamMember.name} key={teamMember.name} />
               <CloseButton
                 onClick={() =>
                   deletePokemon({
