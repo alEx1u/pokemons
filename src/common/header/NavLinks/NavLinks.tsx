@@ -1,7 +1,7 @@
 // components/layout/NavLinks.tsx
 import { Link, useLocation } from 'react-router';
 import clsx from 'clsx';
-import userNoImg from '../../../assets/userNoImg.jpg';
+import userNoImg from '../../../assets/userNoImg.svg';
 import styles from '../Navbar.module.scss';
 import { ROUTES } from '../../../utils/constants/routes';
 import { Typography } from '../../typography/Typography';

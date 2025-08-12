@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import styles from './UserCard.module.scss';
-import userNoImg from '../../../assets/userNoImg.jpg';
+import userNoImg from '../../../assets/userNoImg.svg';
 
 interface UserCardProps {
   user: User;

@@ -1,19 +1,25 @@
+// Input.tsx
+import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import styles from './Input.module.scss';
-interface InputProps extends React.ComponentPropsWithRef<'input'> {
-  isLoading?: boolean;
-  error?: string;
+
+interface InputProps extends React.ComponentPropsWithoutRef<'input'> {
+  error?: string | boolean;
 }
 
-export const Input = ({ id, placeholder, error, ref, ...props }: InputProps) => (
-  <label htmlFor={id}>
-    <div className={styles.placeholder}>{placeholder}</div>
-    <input
-      className={clsx(styles.input, error && styles['input--error'])}
-      id={id}
-      ref={ref}
-      {...props}
-    />
-    <span className={styles.span}>{error}</span>
-  </label>
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ id, placeholder, error, className, ...props }, ref) => {
+    return (
+      <label htmlFor={id}>
+        <div className={styles.placeholder}>{placeholder}</div>
+        <input
+          id={id}
+          ref={ref}
+          className={clsx(styles.input, error && styles['input--error'], className)}
+          {...props}
+        />
+        {error && typeof error === 'string' && <span className={styles.span}>{error}</span>}
+      </label>
+    );
+  }
 );

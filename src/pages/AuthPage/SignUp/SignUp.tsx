@@ -35,7 +35,8 @@ export const SignUp = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormType>({
     resolver: zodResolver(registerSchema),
-    mode: 'onBlur',
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
   });
 
   const { mutate: registerWithEmailAndPasswordMutation, isPending: isLogging } =
@@ -97,32 +98,32 @@ export const SignUp = () => {
           })}
           {...register('firstName')}
           placeholder="firstname"
+          error={errors.firstName?.message}
         />
-        {errors.firstName && <p className={styles.error}>{errors.firstName.message}</p>}
         <Input
           className={clsx(styles.input, {
             [styles['input--error']]: errors.lastName,
           })}
           {...register('lastName')}
           placeholder="lastname"
+          error={errors.lastName?.message}
         />
-        {errors.lastName && <p className={styles.error}>{errors.lastName.message}</p>}
         <Input
           className={clsx(styles.input, {
             [styles['input--error']]: errors.city,
           })}
           {...register('city')}
           placeholder="city"
+          error={errors.city?.message}
         />
-        {errors.city && <p className={styles.error}>{errors.city.message}</p>}
         <Input
           className={clsx(styles.input, {
             [styles['input--error']]: errors.city,
           })}
           {...register('email')}
           placeholder="email"
+          error={errors.email?.message}
         />
-        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
         <Input
           className={clsx(styles.input, {
             [styles['input--error']]: errors.password,
@@ -130,8 +131,8 @@ export const SignUp = () => {
           {...register('password')}
           type="password"
           placeholder="password"
+          error={errors.password?.message}
         />
-        {errors.password && <p className={styles.error}>{errors.password.message}</p>}
         <Button style={{ marginTop: 10 }} children="Sign Up" theme="red" disabled={loading} />
       </form>
       {fireBaseError && <p className={styles.error}>{fireBaseError}</p>}

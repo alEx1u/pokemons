@@ -32,7 +32,6 @@ export const SignIn = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormType>({
     resolver: zodResolver(loginSchema),
-    mode: 'onBlur',
   });
 
   const { mutate: loginWithEmailAndPasswordMutation, isPending: isLogging } =
@@ -76,8 +75,8 @@ export const SignIn = () => {
           })}
           {...register('email')}
           placeholder="email"
+          error={errors.email?.message}
         />
-        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
         <Input
           className={clsx(styles.input, {
             [styles['input--error']]: errors.password,
@@ -85,8 +84,8 @@ export const SignIn = () => {
           {...register('password')}
           type="password"
           placeholder="password"
+          error={errors.password?.message}
         />
-        {errors.password && <p className={styles.error}>{errors.password.message}</p>}
         <Button
           style={{ marginTop: 15 }}
           type="submit"
