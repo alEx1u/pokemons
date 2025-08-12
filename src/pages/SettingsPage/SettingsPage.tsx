@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Setting } from './Settings/Setting';
 import { SettingChangeModal } from '../../common/modals/SettingChangeModal/SettingChangeModal';
 import { SettingModalItem } from '../../common/modals/SettingChangeModal/SettingChangeModalContent/SettingChangeModalContent';
-import userNoImg from '../../assets/userNoImg.jpg';
+import userNoImg from '../../assets/userNoImg.svg';
 import { IconButton } from '../../common/buttons/IconButton/IconButton';
 import { PenIcon } from '../../common/icons/PenIcon';
 import { UploadPhotoModal } from '../../common/modals/UploadPhotoModal/UploadPhotoModal';

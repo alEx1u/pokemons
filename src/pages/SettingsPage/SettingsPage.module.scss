@@ -9,12 +9,19 @@
 
 .img-wrapper {
   position: relative;
-  width: sp(45);
+  width: sp(30);
+  height: sp(30);
   margin-bottom: sp(10);
   @include flex-center;
+  @include respond(md) {
+    width: sp(45);
+    height: sp(45);
+  }
   img {
+    margin-top: 10px;
     border-radius: 50%;
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
   .icon {
